@@ -1,6 +1,6 @@
 ## [Bubble Sort](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1739383883810 -->
+<!-- notecardId: 1739659601578 -->
 
 ```js
 function bubbleSort(arr) {
@@ -21,7 +21,7 @@ function bubbleSort(arr) {
 
 ## [Bubble Sort 'optimized'](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1739383892832 -->
+<!-- notecardId: 1739659601581 -->
 
 ```js
 function bubbleSort(arr) {

@@ -1,6 +1,6 @@
 ## [Merge Sort 'in-place'](https://bigfrontend.dev/problem/implement-Merge-Sort)
 
-<!-- notecardId: 1739388117543 -->
+<!-- notecardId: 1739659608148 -->
 
 ```js
 function mergeSort(arr, left = 0, right = arr.length - 1) {
@@ -10,11 +10,10 @@ function mergeSort(arr, left = 0, right = arr.length - 1) {
 
   mergeSort(arr, left, mid);
   mergeSort(arr, mid + 1, right);
-
-  mergeInPlace(arr, left, mid, right);
+  merge(arr, left, mid, right);
 }
 
-function mergeInPlace(arr, left, mid, right) {
+function merge(arr, left, mid, right) {
   let i = left;
   let j = mid + 1;
 
@@ -42,7 +41,7 @@ function mergeInPlace(arr, left, mid, right) {
 
 ## [Merge Sort 'immutable'](https://www.greatfrontend.com/questions/algo/merge-sort?format=algo)
 
-<!-- notecardId: 1739388739351 -->
+<!-- notecardId: 1739659608149 -->
 
 ```js
 function mergeSort(arr) {

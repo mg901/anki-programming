@@ -1,0 +1,27 @@
+## [189 Rotate Array](https://leetcode.com/problems/rotate-array/description/)
+
+<!-- notecardId: 1739659593473 -->
+
+```js
+function rotate(nums, k) {
+  k %= nums.length;
+
+  reverse(nums);
+  reverse(nums, 0, k - 1);
+  reverse(nums, k, nums.length - 1);
+}
+
+function reverse(arr, left = 0, right = arr.length - 1) {
+  while (left < right) {
+    swap(arr, left, right);
+    left += 1;
+    right -= 1;
+  }
+}
+
+function swap(arr, a, b) {
+  const temp = arr[b];
+  arr[b] = arr[a];
+  arr[a] = temp;
+}
+```
