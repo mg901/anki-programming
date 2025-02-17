@@ -1,6 +1,6 @@
 ## [Promise](https://bigfrontend.dev/problem/create-your-own-Promise)
 
-<!-- notecardId: 1739475504906 -->
+<!-- notecardId: 1739799132141 -->
 
 ```js
 const STATES = {
@@ -57,39 +57,31 @@ class MyPromise {
       if (alreadyResolved) return;
       alreadyResolved = true;
 
-      if (this === resolution) {
-        this.#rejectPromise(
-          TypeError(
-            `Chaining cycle detected for promise #<${resolution.constructor.name}>`
-          )
-        );
-
-        return;
-      }
-
-      if (!isObject(resolution)) {
-        this.#fulfillPromise(resolution);
-
-        return;
-      }
-
       try {
-        resolution.then;
+        if (this === resolution) {
+          const { name } = resolution.constructor;
+
+          throw new TypeError(`Chaining cycle detected for promise #<${name}>`);
+        }
+
+        if (!isObject(resolution)) {
+          this.#fulfillPromise(resolution);
+
+          return;
+        }
+
+        if (!isCallable(resolution.then)) {
+          this.#fulfillPromise(resolution);
+
+          return;
+        }
+
+        queueMicrotask(() => {
+          this.#resolveThenableJob(resolution);
+        });
       } catch (error) {
         this.#rejectPromise(error);
-
-        return;
       }
-
-      if (!isCallable(resolution.then)) {
-        this.#fulfillPromise(resolution);
-
-        return;
-      }
-
-      queueMicrotask(() => {
-        this.#resolveThenableJob(resolution);
-      });
     };
 
     // https://tc39.es/ecma262/#sec-promise-reject-functions

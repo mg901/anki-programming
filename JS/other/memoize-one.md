@@ -10,7 +10,7 @@ function memoizeOne(func, isEqual = areArgsEqual) {
 
   return function (...newArgs) {
     if (lastThis === this && isEqual(newArgs, lastArgs)) {
-      return cache.lastResult;
+      return result;
     }
 
     result = func.apply(this, newArgs);

@@ -1,6 +1,6 @@
 ## [Chunk](https://www.greatfrontend.com/questions/javascript/chunk)
 
-<!-- notecardId: 1739476466551 -->
+<!-- notecardId: 1739697587549 -->
 
 ```js
 function chunk(array, size = 1) {
@@ -16,6 +16,17 @@ function chunk(array, size = 1) {
     }
 
     result[chunkIndex].push(array[i]);
+  }
+
+  return result;
+}
+
+// or
+function chunk(arr, size) {
+  const result = [];
+
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
   }
 
   return result;
