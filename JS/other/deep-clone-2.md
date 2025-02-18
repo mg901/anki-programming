@@ -1,6 +1,6 @@
 ## [Deep Clone 2](https://www.greatfrontend.com/questions/javascript/deep-clone-ii?language=js)
 
-<!-- notecardId: 1739454842007 -->
+<!-- notecardId: 1739880597560 -->
 
 ```js
 function deepClone(value) {
@@ -29,8 +29,8 @@ function deepClone(value) {
       return data.map(deepClone);
     }
 
-    const clone = Object.create(Object.getPrototypeOf(data));
-    seen.set(data, clone);
+    const target = Object.create(Object.getPrototypeOf(data));
+    seen.set(data, target);
 
     const keys = [
       ...Object.keys(data),
@@ -38,10 +38,10 @@ function deepClone(value) {
     ].filter((key) => Object.prototype.propertyIsEnumerable.call(data, key));
 
     for (const key of keys) {
-      clone[key] = traverse(data[key], seen);
+      target[key] = traverse(data[key], seen);
     }
 
-    return clone;
+    return target;
   }
 }
 ```

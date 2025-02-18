@@ -1,6 +1,6 @@
 ## [Reorder array with new indexes](https://bigfrontend.dev/problem/reorder-array-with-new-indexes)
 
-<!-- notecardId: 1739660728238 -->
+<!-- notecardId: 1739891773665 -->
 
 ```js
 function sort(items, newOrder) {
@@ -18,9 +18,9 @@ function sort(items, newOrder) {
   }
 }
 
-function swap(arr, a, b) {
-  const temp = arr[b];
-  arr[b] = arr[a];
-  arr[a] = temp;
+function swap(arr, from, to) {
+  const temp = arr[to];
+  arr[to] = arr[from];
+  arr[from] = temp;
 }
 ```

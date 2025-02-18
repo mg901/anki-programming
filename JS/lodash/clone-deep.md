@@ -1,6 +1,6 @@
 ## [Clone Deep](https://bigfrontend.dev/problem/create-cloneDeep)
 
-<!-- notecardId: 1739476471131 -->
+<!-- notecardId: 1739880342547 -->
 
 ```js
 function cloneDeep(data) {
@@ -17,8 +17,8 @@ function cloneDeep(data) {
       return seen.get(it);
     }
 
-    const clone = Array.isArray(it) ? [] : {};
-    seen.set(it, clone);
+    const target = Array.isArray(it) ? [] : {};
+    seen.set(it, target);
 
     const enumerableSymbolKeys = Object.getOwnPropertySymbols(it).filter(
       (prop) => Object.prototype.propertyIsEnumerable.call(it, prop)
@@ -28,10 +28,10 @@ function cloneDeep(data) {
 
     for (let i = 0; i < keys.length; i += 1) {
       const key = keys[i];
-      clone[key] = traverse(it[key]);
+      target[key] = traverse(it[key]);
     }
 
-    return clone;
+    return target;
   }
 }
 ```

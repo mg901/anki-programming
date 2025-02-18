@@ -1,6 +1,6 @@
 ## [Selection Sort](https://bigfrontend.dev/problem/implement-Selection-Sort)
 
-<!-- notecardId: 1739659615075 -->
+<!-- notecardId: 1739879437593 -->
 
 ```js
 function selectionSort(arr) {

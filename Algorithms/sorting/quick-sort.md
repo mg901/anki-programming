@@ -1,6 +1,6 @@
 ## [Iterative Lomuto Randomized QuickSort](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
-<!-- notecardId: 1739659611724 -->
+<!-- notecardId: 1739891657494 -->
 
 ```js
 function quickSort(arr) {
@@ -49,9 +49,9 @@ function partition(array, left, right) {
   return partitionIndex;
 }
 
-function swap(array, max, min) {
-  const temp = array[min];
-  array[min] = array[max];
-  array[max] = temp;
+function swap(arr, from, to) {
+  const temp = arr[to];
+  arr[to] = arr[from];
+  arr[from] = temp;
 }
 ```

@@ -1,6 +1,6 @@
 ## [Deep Map](https://www.greatfrontend.com/questions/javascript/deep-map?language=js)
 
-<!-- notecardId: 1739476490416 -->
+<!-- notecardId: 1739880295101 -->
 
 ```js
 function deepMap(value, fn) {
@@ -20,16 +20,16 @@ function deepMap(value, fn) {
       return seen.get(data);
     }
 
-    const mapped = isArray ? [] : {};
-    seen.set(data, mapped);
+    const target = isArray ? [] : {};
+    seen.set(data, target);
 
     for (const key in data) {
       if (Object.hasOwn(data, key)) {
-        mapped[key] = traverse(data[key], fn);
+        target[key] = traverse(data[key], fn);
       }
     }
 
-    return mapped;
+    return target;
   }
 }
 

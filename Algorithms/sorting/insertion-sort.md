@@ -1,6 +1,6 @@
 ## [Insertion Sort](https://bigfrontend.dev/problem/implement-Insertion-Sort)
 
-<!-- notecardId: 1739659604999 -->
+<!-- notecardId: 1739879453047 -->
 
 ```js
 function insertionSort(arr) {
