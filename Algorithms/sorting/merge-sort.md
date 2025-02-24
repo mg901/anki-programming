@@ -1,6 +1,6 @@
 ## [Merge Sort 'in-place'](https://bigfrontend.dev/problem/implement-Merge-Sort)
 
-<!-- notecardId: 1739879446693 -->
+<!-- notecardId: 1740222543257 -->
 
 ```js
 function mergeSort(arr, left = 0, right = arr.length - 1) {
@@ -21,7 +21,7 @@ function merge(arr, left, mid, right) {
     if (arr[i] <= arr[j]) {
       i += 1;
     } else {
-      const value = arr[j];
+      const min = arr[j];
       let index = j;
 
       while (index > i) {
@@ -29,7 +29,7 @@ function merge(arr, left, mid, right) {
         index -= 1;
       }
 
-      arr[i] = value;
+      arr[i] = min;
 
       i += 1;
       j += 1;

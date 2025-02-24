@@ -1,6 +1,6 @@
 ## [Reorder array with new indexes](https://bigfrontend.dev/problem/reorder-array-with-new-indexes)
 
-<!-- notecardId: 1739891773665 -->
+<!-- notecardId: 1740329979541 -->
 
 ```js
 function sort(items, newOrder) {

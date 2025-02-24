@@ -1,6 +1,6 @@
 ## [Is Prime](https://bigfrontend.dev/problem/isPrime)
 
-<!-- notecardId: 1739477225437 -->
+<!-- notecardId: 1740217472736 -->
 
 ```js
 function isPrime(num) {
