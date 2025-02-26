@@ -1,6 +1,4 @@
-## [Smallest subarray with sum greater than a given value](https://www.geeksforgeeks.org/minimum-length-subarray-sum-greater-given-value/#expected-approach-using-two-pointers-on-time-and-o1-space)
-
-<!-- notecardId: 1740580682386 -->
+## [Smallest subarray with sum greater than x](https://www.geeksforgeeks.org/problems/smallest-subarray-with-sum-greater-than-x5651/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card)
 
 ```js
 function smallestSubWithSum(arr, x) {
@@ -19,6 +17,6 @@ function smallestSubWithSum(arr, x) {
     }
   }
 
-  return smallest;
+  return smallest === Infinity ? 0 : smallest;
 }
 ```
