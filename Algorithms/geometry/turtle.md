@@ -1,7 +1,5 @@
 ## [Turtle](https://www.greatfrontend.com/questions/javascript/turtle?language=js&tab=coding)
 
-<!-- notecardId: 1740219712529 -->
-
 ```js
 export default class Turtle {
   #x = 0;
