@@ -2,19 +2,19 @@
 
 ```js
 function subarraySum(arr, target) {
-  let sum = 0;
-  let start = 0;
+  let left = 0;
+  let current = 0;
 
-  for (let end = 0; end < arr.length; end += 1) {
-    sum += arr[end];
+  for (let right = 0; right < arr.length; right += 1) {
+    current += arr[right];
 
-    while (sum > target) {
-      sum -= arr[start];
-      start += 1;
+    while (current > target) {
+      current -= arr[left];
+      left += 1;
     }
 
-    if (sum === target) {
-      return [start + 1, end + 1];
+    if (current === target) {
+      return [left + 1, right + 1];
     }
   }
 
