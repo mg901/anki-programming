@@ -1,23 +1,23 @@
 ## [105 Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/)
 
-<!-- notecardId: 1742467194947 -->
+<!-- notecardId: 1742488892985 -->
 
 ```js
 function buildTree(preorder, inorder) {
-  let preIdx = 0;
   let inIdx = 0;
+  let preIdx = 0;
 
   return traverse();
 
-  function traverse(stop) {
-    if (inorder[inIdx] === stop) return null;
+  function traverse(boundary) {
+    if (inorder[inIdx] === boundary) return null;
 
-    const node = new Node(preorder[preIdx]);
+    const node = new TreeNode(preorder[preIdx]);
     preIdx += 1;
 
     node.left = traverse(node.val);
     inIdx += 1;
-    node.right = traverse(stop);
+    node.right = traverse(boundary);
 
     return node;
   }
