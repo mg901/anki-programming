@@ -3,20 +3,18 @@
 ```js
 function subarraySumFixed(nums, k) {
   let left = 0;
+  let sum = 0;
   let max = 0;
-  let current = 0;
 
-  for (let i = 0; i < k; i += 1) {
-    current += nums[i];
-  }
+  for (let right = 0; right < nums.length; right += 1) {
+    sum += nums[right];
 
-  max = current;
+    if (right >= k - 1) {
+      max = Math.max(max, sum);
 
-  for (let right = k; right < nums.length; right += 1) {
-    current += nums[right] - nums[left];
-    left += 1;
-
-    max = Math.max(max, current);
+      sum -= nums[left];
+      left += 1;
+    }
   }
 
   return max;
