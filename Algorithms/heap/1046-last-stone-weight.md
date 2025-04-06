@@ -1,20 +1,23 @@
 ## [1046 Last Stone Weight](https://leetcode.com/problems/last-stone-weight/description/)
 
-<!-- notecardId: 1743766568179 -->
+<!-- notecardId: 1743966833978 -->
 
 ```js
 function lastStoneWeight(stones) {
+  if (!stones.length) return 0;
+
   const pq = new MaxPriorityQueue();
 
-  stones.forEach((stone) => pq.enqueue(stone));
+  stones.forEach((stone) => {
+    pq.enqueue(stone);
+  });
 
   while (pq.size() > 1) {
-    const a = pq.dequeue();
-    const b = pq.dequeue();
-    const diff = a - b;
+    const x = pq.dequeue();
+    const y = pq.dequeue();
 
-    if (diff > 0) {
-      pq.enqueue(diff);
+    if (x !== y) {
+      pq.enqueue(x - y);
     }
   }
 
