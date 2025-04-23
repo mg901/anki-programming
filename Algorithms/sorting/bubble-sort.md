@@ -1,51 +1,56 @@
 ## [Bubble Sort](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1739879461743 -->
+<!-- notecardId: 1745329165836 -->
 
 ```js
 function bubbleSort(arr) {
-  const { length } = arr;
-  if (length < 2) return arr;
+  const n = arr.length;
+  if (n < 2) return;
 
-  for (let i = 0; i < length - 1; i += 1) {
-    for (let j = 0; j < length - i - 1; j += 1) {
+  for (let i = 0; i < n - 1; i += 1) {
+    for (let j = 0; j < n - i - 1; j += 1) {
       if (arr[j] > arr[j + 1]) {
-        const temp = arr[j + 1];
-        arr[j + 1] = arr[j];
-        arr[j] = temp;
+        swap(arr, j, j + 1);
       }
     }
   }
+}
+
+function swap(arr, i, j) {
+  const temp = arr[j];
+  arr[j] = arr[i];
+  arr[i] = temp;
 }
 ```
 
 ## [Bubble Sort 'optimized'](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1739879461745 -->
+<!-- notecardId: 1745329165839 -->
 
 ```js
 function bubbleSort(arr) {
-  let { length } = arr;
-  if (length < 2) return arr;
+  let n = arr.length;
+  if (n < 2) return;
 
   let swapped;
 
   do {
     swapped = false;
 
-    for (let i = 0; i < length - 1; i += 1) {
-      if (arr[i] > arr[i + 1]) {
-        const temp = arr[i];
-        arr[i] = arr[i + 1];
-        arr[i + 1] = temp;
-
+    for (let i = 1; i < n; i += 1) {
+      if (arr[i - 1] > arr[i]) {
+        swap(arr, i - 1, i);
         swapped = true;
       }
     }
 
-    length -= 1;
+    n -= 1;
   } while (swapped);
+}
 
-  return arr;
+function swap(arr, i, j) {
+  const temp = arr[j];
+  arr[j] = arr[i];
+  arr[i] = temp;
 }
 ```

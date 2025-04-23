@@ -1,28 +1,32 @@
 ## [Selection Sort](https://bigfrontend.dev/problem/implement-Selection-Sort)
 
-<!-- notecardId: 1739879437593 -->
+<!-- notecardId: 1745320531777 -->
 
 ```js
 function selectionSort(arr) {
-  const { length } = arr;
-  if (length < 2) return arr;
+  const n = arr.length;
+  if (n < 2) return;
 
-  for (let i = 0; i < length - 1; i += 1) {
-    let minIndex = i;
+  let minIndex;
 
-    for (let j = i + 1; j < length; j += 1) {
+  for (let i = 0; i < n - 1; i += 1) {
+    minIndex = i;
+
+    for (let j = i + 1; j < n; j += 1) {
       if (arr[j] < arr[minIndex]) {
         minIndex = j;
       }
     }
 
     if (minIndex !== i) {
-      const temp = arr[i];
-      arr[i] = arr[minIndex];
-      arr[minIndex] = temp;
+      swap(arr, i, minIndex);
     }
   }
+}
 
-  return arr;
+function swap(arr, i, j) {
+  const temp = arr[j];
+  arr[j] = arr[i];
+  arr[i] = temp;
 }
 ```

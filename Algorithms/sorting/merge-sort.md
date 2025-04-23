@@ -1,13 +1,12 @@
 ## [Merge Sort 'in-place'](https://bigfrontend.dev/problem/implement-Merge-Sort)
 
-<!-- notecardId: 1740222543257 -->
+<!-- notecardId: 1745180349372 -->
 
 ```js
 function mergeSort(arr, left = 0, right = arr.length - 1) {
   if (left >= right) return;
 
-  const mid = Math.floor((left + right) / 2);
-
+  const mid = left + ((right - left) >> 1);
   mergeSort(arr, left, mid);
   mergeSort(arr, mid + 1, right);
   merge(arr, left, mid, right);
@@ -18,7 +17,7 @@ function merge(arr, left, mid, right) {
   let j = mid + 1;
 
   while (i <= mid && j <= right) {
-    if (arr[i] <= arr[j]) {
+    if (arr[i] < arr[j]) {
       i += 1;
     } else {
       const min = arr[j];

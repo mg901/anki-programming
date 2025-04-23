@@ -1,13 +1,13 @@
 ## [Insertion Sort](https://bigfrontend.dev/problem/implement-Insertion-Sort)
 
-<!-- notecardId: 1739879453047 -->
+<!-- notecardId: 1745329176860 -->
 
 ```js
 function insertionSort(arr) {
-  const { length } = arr;
-  if (length < 2) return arr;
+  const n = arr.length;
+  if (n < 2) return;
 
-  for (let i = 1; i < length; i += 1) {
+  for (let i = 1; i < n; i += 1) {
     const current = arr[i];
     let j = i - 1;
 
