@@ -1,0 +1,15 @@
+## [Meeting Rooms](https://neetcode.io/problems/meeting-schedule)
+
+<!-- notecardId: 1745526441251 -->
+
+```js
+function canAttendMeetings(intervals) {
+  intervals.sort((a, b) => a.start - b.start);
+
+  for (let i = 1; i < intervals.length; i += 1) {
+    if (intervals[i].start < intervals[i - 1].end) return false;
+  }
+
+  return true;
+}
+```
