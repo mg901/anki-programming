@@ -1,16 +1,16 @@
 ## [Encode and Decode Strings](https://neetcode.io/problems/string-encode-and-decode)
 
-<!-- notecardId: 1740850336189 -->
+<!-- notecardId: 1746737132808 -->
 
 ```js
-const DELIMITER = "#";
+const DELIMITER = '#';
 
 function encode(strings) {
   return strings
     .map((str) => {
       return `${str.length}${DELIMITER}${str}`;
     })
-    .join("");
+    .join('');
 }
 
 function decode(string) {
@@ -18,8 +18,8 @@ function decode(string) {
   let i = 0;
 
   while (i < str.length) {
-    let delimiterIndex = str.indexOf("#", i);
-    let length = str.slice(i, delimiterIndex) - "0";
+    let delimiterIndex = str.indexOf('#', i);
+    let length = str.slice(i, delimiterIndex) - '0';
     const start = delimiterIndex + 1;
     const end = start + length;
     decoded.push(str.slice(start, end));
