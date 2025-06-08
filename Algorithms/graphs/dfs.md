@@ -1,10 +1,10 @@
-## [Depth-first Search 'recursion'](https://www.greatfrontend.com/questions/algo/depth-first-search?format=algo)
+## [Depth-first Search 'recursion'](https://www.greatfrontend.com/questions/algo/depth-first-search)
 
-<!-- notecardId: 1749314148520 -->
+<!-- notecardId: 1749382414756 -->
 
 ```js
 export default function depthFirstSearch(graph, source) {
-  if (Object.keys(graph).length === 0) return [];
+  if (!graph || Object.keys(graph).length === 0) return [];
 
   const visited = new Set();
   const result = [];
@@ -27,9 +27,9 @@ export default function depthFirstSearch(graph, source) {
 }
 ```
 
-## [Depth-first Search 'imperative'](https://www.greatfrontend.com/questions/algo/depth-first-search?format=algo)
+## [Depth-first Search 'imperative'](https://www.greatfrontend.com/questions/algo/depth-first-search)
 
-<!-- notecardId: 1749314148524 -->
+<!-- notecardId: 1749382414759 -->
 
 ```js
 export default function depthFirstSearch(graph, source) {

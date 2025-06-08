@@ -1,6 +1,6 @@
 ## [Breadth-first Search](https://www.greatfrontend.com/questions/algo/breadth-first-search?format=algo)
 
-<!-- notecardId: 1749314138495 -->
+<!-- notecardId: 1749382437283 -->
 
 ```js
 export default function breadthFirstSearch(graph, source) {
