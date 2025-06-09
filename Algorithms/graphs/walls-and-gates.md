@@ -1,6 +1,6 @@
 ## [Walls and Gates](https://neetcode.io/problems/islands-and-treasure?list=neetcode150)
 
-<!-- notecardId: 1749397238563 -->
+<!-- notecardId: 1749465239886 -->
 
 ```js
 class Solution {
@@ -13,9 +13,9 @@ class Solution {
 
     for (let r = 0; r < rows; r += 1) {
       for (let c = 0; c < cols; c += 1) {
-        if (rooms[r][c] !== 0) continue;
-
-        queue.push([r, c]);
+        if (rooms[r][c] === 0) {
+          queue.push([r, c]);
+        }
       }
     }
 
