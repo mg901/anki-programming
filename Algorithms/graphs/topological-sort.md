@@ -1,21 +1,22 @@
 ## [Topological Sort 'Kahn's algorithm'](https://www.greatfrontend.com/questions/algo/topological-sort)
 
-<!-- notecardId: 1749384685841 -->
+<!-- notecardId: 1749814240574 -->
 
 ```js
 export default function topologicalSort(graph) {
   const nodes = new Map();
   const queue = new Queue();
   const order = [];
+  const graphNodes = Object.keys(graph);
 
-  Object.keys(graph).forEach((node) => {
+  graphNodes.forEach((node) => {
     nodes.set(node, {
       in: 0,
       out: new Set(graph[node]),
     });
   });
 
-  Object.keys(graph).forEach((node) => {
+  graphNodes.forEach((node) => {
     graph[node].forEach((neighbor) => {
       nodes.get(neighbor).in += 1;
     });
@@ -41,7 +42,7 @@ export default function topologicalSort(graph) {
     order.push(node);
   }
 
-  return order.length === Object.keys(graph).length ? order : [];
+  return order.length === graphNodes.length ? order : [];
 }
 
 // or
@@ -49,15 +50,16 @@ export default function topologicalSort(graph) {
   const nodes = new Map();
   const queue = [];
   const order = [];
+  const graphNodes = Object.keys(graph);
 
-  for (const node of Object.keys(graph)) {
+  for (const node of graphNodes) {
     nodes.set(node, {
       in: 0,
       out: new Set(graph[node]),
     });
   }
 
-  for (const node of Object.keys(graph)) {
+  for (const node of graphNodes) {
     for (const neighbor of graph[node]) {
       nodes.get(neighbor).in += 1;
     }
@@ -83,6 +85,6 @@ export default function topologicalSort(graph) {
     order.push(node);
   }
 
-  return order.length === Object.keys(graph).length ? order : [];
+  return order.length === graphNodes.length ? order : [];
 }
 ```
