@@ -1,16 +1,16 @@
 ## [Topological Sort 'Kahn's algorithm'](https://www.greatfrontend.com/questions/algo/topological-sort)
 
-<!-- notecardId: 1749814240574 -->
+<!-- notecardId: 1749839117079 -->
 
 ```js
 export default function topologicalSort(graph) {
-  const nodes = new Map();
+  const nodeMetadata = new Map();
   const queue = new Queue();
   const order = [];
   const graphNodes = Object.keys(graph);
 
   graphNodes.forEach((node) => {
-    nodes.set(node, {
+    nodeMetadata.set(node, {
       in: 0,
       out: new Set(graph[node]),
     });
@@ -18,11 +18,11 @@ export default function topologicalSort(graph) {
 
   graphNodes.forEach((node) => {
     graph[node].forEach((neighbor) => {
-      nodes.get(neighbor).in += 1;
+      nodeMetadata.get(neighbor).in += 1;
     });
   });
 
-  nodes.forEach((value, node) => {
+  nodeMetadata.forEach((value, node) => {
     if (value.in === 0) {
       queue.enqueue(node);
     }
@@ -31,10 +31,10 @@ export default function topologicalSort(graph) {
   while (queue.length()) {
     const node = queue.dequeue();
 
-    nodes.get(node).out.forEach((neighbor) => {
-      nodes.get(neighbor).in -= 1;
+    nodeMetadata.get(node).out.forEach((neighbor) => {
+      nodeMetadata.get(neighbor).in -= 1;
 
-      if (nodes.get(neighbor).in === 0) {
+      if (nodeMetadata.get(neighbor).in === 0) {
         queue.enqueue(neighbor);
       }
     });
@@ -47,13 +47,13 @@ export default function topologicalSort(graph) {
 
 // or
 export default function topologicalSort(graph) {
-  const nodes = new Map();
+  const graphNodes = Object.keys(graph);
+  const nodeMetadata = new Map();
   const queue = [];
   const order = [];
-  const graphNodes = Object.keys(graph);
 
   for (const node of graphNodes) {
-    nodes.set(node, {
+    nodeMetadata.set(node, {
       in: 0,
       out: new Set(graph[node]),
     });
@@ -61,11 +61,11 @@ export default function topologicalSort(graph) {
 
   for (const node of graphNodes) {
     for (const neighbor of graph[node]) {
-      nodes.get(neighbor).in += 1;
+      nodeMetadata.get(neighbor).in += 1;
     }
   }
 
-  for (const [node, value] of nodes) {
+  for (const [node, value] of nodeMetadata) {
     if (value.in === 0) {
       queue.push(node);
     }
@@ -74,10 +74,10 @@ export default function topologicalSort(graph) {
   while (queue.length) {
     const node = queue.shift();
 
-    for (const neighbor of nodes.get(node).out) {
-      nodes.get(neighbor).in -= 1;
+    for (const neighbor of nodeMetadata.get(node).out) {
+      nodeMetadata.get(neighbor).in -= 1;
 
-      if (nodes.get(neighbor).in === 0) {
+      if (nodeMetadata.get(neighbor).in === 0) {
         queue.push(neighbor);
       }
     }
