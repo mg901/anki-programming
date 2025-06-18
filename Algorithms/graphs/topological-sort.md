@@ -1,6 +1,6 @@
-## [Topological Sort 'Kahn's algorithm'](https://www.greatfrontend.com/questions/algo/topological-sort)
+## [Topological Sort 'Kahn'](https://www.greatfrontend.com/questions/algo/topological-sort)
 
-<!-- notecardId: 1749839117079 -->
+<!-- notecardId: 1750164041111 -->
 
 ```js
 export default function topologicalSort(graph) {
