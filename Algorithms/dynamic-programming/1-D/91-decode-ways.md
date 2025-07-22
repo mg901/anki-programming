@@ -1,6 +1,6 @@
 ## [91 Decode Ways](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1751369763210 -->
+<!-- notecardId: 1753182059350 -->
 
 ```js
 function numDecodings(str) {
