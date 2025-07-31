@@ -1,10 +1,14 @@
 ## [91 Decode Ways](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1753267019068 -->
+<!-- notecardId: 1753966382696 -->
 
 ```js
-// Sub-pattern: Fibonacci numbers
+// Sub-pattern:
+// - Fibonacci numbers
+
 // Top-down
+// - Time: O(n) or O(2^n) without memo
+// - Space: O(n)
 function numDecodings(s) {
   if (s.length === 0) return 0;
 
@@ -33,7 +37,9 @@ function numDecodings(s) {
 }
 
 // Bottom-up
-function numDecodings(str) {
+// - Time: O(n)
+// - Space: O(n)
+function numDecodings(s) {
   const n = s.length;
   if (n === 0) return 0;
 
