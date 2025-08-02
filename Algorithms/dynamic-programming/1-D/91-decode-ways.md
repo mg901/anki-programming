@@ -1,6 +1,6 @@
 ## [91 Decode Ways](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1753966382696 -->
+<!-- notecardId: 1754058855622 -->
 
 ```js
 // Sub-pattern:
@@ -10,16 +10,15 @@
 // - Time: O(n) or O(2^n) without memo
 // - Space: O(n)
 function numDecodings(s) {
-  if (s.length === 0) return 0;
-
-  const cache = [];
+  const n = s.length;
+  const cache = new Int32Array(n).fill(-1);
 
   return dfs(0);
 
   function dfs(index) {
     if (index === s.length) return 1;
     if (s[index] === '0') return 0;
-    if (cache[index] !== undefined) return cache[index];
+    if (cache[index] !== -1) return cache[index];
 
     let res = dfs(index + 1);
 
@@ -41,21 +40,19 @@ function numDecodings(s) {
 // - Space: O(n)
 function numDecodings(s) {
   const n = s.length;
-  if (n === 0) return 0;
-
-  const dp = new Array(n + 1).fill(0);
-  dp[0] = 1; // an empty string (base case)
-  dp[1] = s[0] === '0' ? 0 : 1; // the first string
+  const dp = new Int32Array(n + 1);
+  dp[0] = 1; // One way to decode an empty string: do nothing.
+  dp[1] = s[0] !== '0' ? 1 : 0; // An any first character from 1 to 9.
 
   for (let i = 2; i <= n; i += 1) {
-    const first = s[i - 1];
-    const second = s[i - 2];
+    const first = s[i - 2];
+    const second = s[i - 1];
 
-    if (first !== '0') {
+    if (second !== '0') {
       dp[i] += dp[i - 1];
     }
 
-    if (second === '1' || (second === '2' && first <= '6')) {
+    if (first === '1' || (first === '2' && second <= '6')) {
       dp[i] += dp[i - 2];
     }
   }
