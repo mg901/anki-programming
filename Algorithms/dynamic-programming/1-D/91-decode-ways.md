@@ -1,6 +1,6 @@
 ## [91 Decode Ways](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1754058855622 -->
+<!-- notecardId: 1754345834230 -->
 
 ```js
 // Sub-pattern:
@@ -40,7 +40,7 @@ function numDecodings(s) {
 // - Space: O(n)
 function numDecodings(s) {
   const n = s.length;
-  const dp = new Int32Array(n + 1);
+  const dp = new Uint32Array(n + 1);
   dp[0] = 1; // One way to decode an empty string: do nothing.
   dp[1] = s[0] !== '0' ? 1 : 0; // An any first character from 1 to 9.
 
