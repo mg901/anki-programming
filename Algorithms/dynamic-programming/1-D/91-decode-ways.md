@@ -1,13 +1,22 @@
 ## [91 Decode Ways](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1754345834230 -->
+<!-- notecardId: 1754495185646 -->
 
 ```js
+// Explanation:
+// - Neetcode: https://youtu.be/6aEyTjOwlJU
+
 // Sub-pattern:
 // - Fibonacci numbers
 
 // Top-down
-// - Time: O(n) or O(2^n) without memo
+//
+// Without memo:
+// - Time:  O(2^n)
+// - Space: O(n)
+//
+// With memo:
+// - Time: O(n)
 // - Space: O(n)
 function numDecodings(s) {
   const n = s.length;
@@ -15,21 +24,21 @@ function numDecodings(s) {
 
   return dfs(0);
 
-  function dfs(index) {
-    if (index === s.length) return 1;
-    if (s[index] === '0') return 0;
-    if (cache[index] !== -1) return cache[index];
+  function dfs(i) {
+    if (i === s.length) return 1;
+    if (s[i] === '0') return 0;
+    if (cache[i] !== -1) return cache[i];
 
-    let res = dfs(index + 1);
+    let res = dfs(i + 1);
 
     if (
-      index + 1 < s.length &&
-      (s[index] === '1' || (s[index] === '2' && s[index + 1] <= '6'))
+      i + 1 < s.length &&
+      (s[i] === '1' || (s[i] === '2' && s[i + 1] <= '6'))
     ) {
-      res += dfs(index + 2);
+      res += dfs(i + 2);
     }
 
-    cache[index] = res;
+    cache[i] = res;
 
     return res;
   }
