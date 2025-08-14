@@ -1,18 +1,16 @@
 ## [Turtle](https://www.greatfrontend.com/questions/javascript/turtle?language=js&tab=coding)
 
 ```js
+const DEGREES_RIGHT_ANGLE = 90;
+const HALF_CIRCLE_DEGREES = 180;
+const FULL_CIRCLE_DEGREES = 360;
+
 export default class Turtle {
   #x = 0;
 
   #y = 0;
 
-  #DEGREES_RIGHT_ANGLE = 90;
-
-  #HALF_CIRCLE_DEGREES = 180;
-
-  #FULL_CIRCLE_DEGREES = 360;
-
-  #angle = this.#DEGREES_RIGHT_ANGLE;
+  #angle = DEGREES_RIGHT_ANGLE;
 
   forward(distance) {
     const radians = this.#degreesToRadians(this.#angle);
@@ -24,7 +22,7 @@ export default class Turtle {
   }
 
   #degreesToRadians(degrees) {
-    return degrees * (Math.PI / this.#HALF_CIRCLE_DEGREES);
+    return degrees * (Math.PI / HALF_CIRCLE_DEGREES);
   }
 
   backward(distance) {
@@ -32,16 +30,15 @@ export default class Turtle {
   }
 
   left() {
-    this.#angle =
-      (this.#angle + this.#DEGREES_RIGHT_ANGLE) % this.#FULL_CIRCLE_DEGREES;
+    this.#angle = (this.#angle + DEGREES_RIGHT_ANGLE) % FULL_CIRCLE_DEGREES;
 
     return this;
   }
 
   right() {
     this.#angle =
-      (this.#angle - this.#DEGREES_RIGHT_ANGLE + this.#FULL_CIRCLE_DEGREES) %
-      this.#FULL_CIRCLE_DEGREES;
+      (this.#angle - DEGREES_RIGHT_ANGLE + FULL_CIRCLE_DEGREES) %
+      FULL_CIRCLE_DEGREES;
 
     return this;
   }
@@ -49,5 +46,6 @@ export default class Turtle {
   position() {
     return [this.#x, this.#y];
   }
+}
 }
 ```

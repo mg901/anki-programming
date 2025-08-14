@@ -3,6 +3,12 @@
 <!-- notecardId: 1749465239886 -->
 
 ```js
+// Explanation:
+// - Neetcode: https://youtu.be/e69C6xhiSQE
+
+// Complexity:
+// - Time: O(rows * cols)
+// - Space: O(rows * cols)
 class Solution {
   islandsAndTreasure(rooms) {
     if (!rooms || !rooms.length) return;
