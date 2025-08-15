@@ -1,6 +1,6 @@
 ## [Walls and Gates](https://neetcode.io/problems/islands-and-treasure?list=neetcode150)
 
-<!-- notecardId: 1749465239886 -->
+<!-- notecardId: 1755264849924 -->
 
 ```js
 // Explanation:
@@ -10,16 +10,16 @@
 // - Time: O(rows * cols)
 // - Space: O(rows * cols)
 class Solution {
-  islandsAndTreasure(rooms) {
-    if (!rooms || !rooms.length) return;
+  islandsAndTreasure(grid) {
+    if (!grid || !grid.length) return;
 
-    let rows = rooms.length;
-    let cols = rooms[0].length;
-    let queue = [];
+    const rows = grid.length;
+    const cols = grid[0].length;
+    const queue = [];
 
     for (let r = 0; r < rows; r += 1) {
       for (let c = 0; c < cols; c += 1) {
-        if (rooms[r][c] === 0) {
+        if (grid[r][c] === 0) {
           queue.push([r, c]);
         }
       }
@@ -33,24 +33,25 @@ class Solution {
     ];
 
     while (queue.length) {
-      const [row, col] = queue.shift();
+      const [prevRow, prevCol] = queue.shift();
 
       for (const [dr, dc] of directions) {
-        const r = row + dr;
-        const c = col + dc;
+        const row = prevRow + dr;
+        const col = prevCol + dc;
 
         if (
-          r < 0 ||
-          c < 0 ||
-          r >= rows ||
-          c >= cols ||
-          rooms[r][c] !== 2147483647
+          row < 0 ||
+          col < 0 ||
+          row === rows ||
+          col === cols ||
+          grid[row][col] !== 2147483647
         ) {
           continue;
         }
-
-        rooms[r][c] = rooms[row][col] + 1;
-        queue.push([r, c]);
+        {
+          grid[row][col] = 1 + grid[prevRow][prevCol];
+          queue.push([row, col]);
+        }
       }
     }
   }
