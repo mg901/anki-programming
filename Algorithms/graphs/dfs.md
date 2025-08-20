@@ -1,6 +1,6 @@
 ## [Depth-first Search 'recursion'](https://www.greatfrontend.com/questions/algo/depth-first-search)
 
-<!-- notecardId: 1755202200586 -->
+<!-- notecardId: 1755602976034 -->
 
 ```js
 // Explanation:
@@ -14,7 +14,7 @@
 //    e = edges
 // - Space: O(v)
 export default function depthFirstSearch(graph, source) {
-  if (graph == null || Object.keys(graph).length === 0) return [];
+  if (!graph || !Object.keys(graph).length) return [];
 
   const visited = new Set();
   const result = [];
@@ -28,9 +28,7 @@ export default function depthFirstSearch(graph, source) {
     visited.add(vertex);
     result.push(vertex);
 
-    const neighbors = graph[vertex] ?? [];
-
-    for (const neighbor of neighbors) {
+    for (const neighbor of graph[vertex] ?? []) {
       traverse(neighbor);
     }
   }
@@ -39,7 +37,7 @@ export default function depthFirstSearch(graph, source) {
 
 ## [Depth-first Search 'imperative'](https://www.greatfrontend.com/questions/algo/depth-first-search)
 
-<!-- notecardId: 1755202200588 -->
+<!-- notecardId: 1755602976038 -->
 
 ```js
 // Complexity:
@@ -49,7 +47,7 @@ export default function depthFirstSearch(graph, source) {
 //    e = edges
 // - Space: O(v)
 export default function depthFirstSearch(graph, source) {
-  if (graph == null || Object.keys(graph).length === 0) return [];
+  if (!graph || !Object.keys(graph).length) return [];
 
   const result = [];
   const stack = [source];

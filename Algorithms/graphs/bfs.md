@@ -1,6 +1,6 @@
 ## [Breadth-first Search](https://www.greatfrontend.com/questions/algo/breadth-first-search?format=algo)
 
-<!-- notecardId: 1755202212359 -->
+<!-- notecardId: 1755602999807 -->
 
 ```js
 // Explanation:
@@ -14,7 +14,7 @@
 //    e = edges
 // - Space: O(v)
 export default function breadthFirstSearch(graph, source) {
-  if (!graph || Object.keys(graph).length === 0) return [];
+  if (!graph || !Object.keys(graph).length) return [];
 
   const visited = new Set();
   const queue = [source];
@@ -27,11 +27,10 @@ export default function breadthFirstSearch(graph, source) {
     visited.add(vertex);
     result.push(vertex);
 
-    const neighbors = graph[vertex] ?? [];
-
-    for (const neighbor of neighbors) {
-      if (visited.has(neighbor)) continue;
-      queue.push(neighbor);
+    for (const neighbor of graph[vertex] ?? []) {
+      if (!visited.has(neighbor)) {
+        queue.push(neighbor);
+      }
     }
   }
 

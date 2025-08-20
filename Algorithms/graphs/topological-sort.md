@@ -1,90 +1,53 @@
 ## [Topological Sort 'Kahn'](https://www.greatfrontend.com/questions/algo/topological-sort)
 
-<!-- notecardId: 1750164041111 -->
+<!-- notecardId: 1755631076514 -->
 
 ```js
+// Explanation:
+// - Algorithm: Kahn
+// - Neetcode: https://youtu.be/7J3GadLzydI?si=0xVzE1Iot1swC792
+
+// Complexity:
+// - Time: O(V + E)
+// - Space: O(V)
 export default function topologicalSort(graph) {
-  const nodeMetadata = new Map();
-  const queue = new Queue();
-  const order = [];
-  const graphNodes = Object.keys(graph);
-
-  graphNodes.forEach((node) => {
-    nodeMetadata.set(node, {
-      in: 0,
-      out: new Set(graph[node]),
-    });
-  });
-
-  graphNodes.forEach((node) => {
-    graph[node].forEach((neighbor) => {
-      nodeMetadata.get(neighbor).in += 1;
-    });
-  });
-
-  nodeMetadata.forEach((value, node) => {
-    if (value.in === 0) {
-      queue.enqueue(node);
-    }
-  });
-
-  while (queue.length()) {
-    const node = queue.dequeue();
-
-    nodeMetadata.get(node).out.forEach((neighbor) => {
-      nodeMetadata.get(neighbor).in -= 1;
-
-      if (nodeMetadata.get(neighbor).in === 0) {
-        queue.enqueue(neighbor);
-      }
-    });
-
-    order.push(node);
-  }
-
-  return order.length === graphNodes.length ? order : [];
-}
-
-// or
-export default function topologicalSort(graph) {
-  const graphNodes = Object.keys(graph);
-  const nodeMetadata = new Map();
+  const nodes = Object.keys(graph);
+  const nodeMetadataMap = new Map();
   const queue = [];
-  const order = [];
+  const result = [];
 
-  for (const node of graphNodes) {
-    nodeMetadata.set(node, {
+  for (const node of nodes) {
+    nodeMetadataMap.set(node, {
       in: 0,
       out: new Set(graph[node]),
     });
   }
 
-  for (const node of graphNodes) {
+  for (const node of nodes) {
     for (const neighbor of graph[node]) {
-      nodeMetadata.get(neighbor).in += 1;
+      nodeMetadataMap.get(neighbor).in += 1;
     }
   }
 
-  for (const [node, value] of nodeMetadata) {
-    if (value.in === 0) {
+  for (const [node, metadata] of nodeMetadataMap) {
+    if (metadata.in === 0) {
       queue.push(node);
     }
   }
 
   while (queue.length) {
     const node = queue.shift();
+    result.push(node);
 
-    for (const neighbor of nodeMetadata.get(node).out) {
-      nodeMetadata.get(neighbor).in -= 1;
+    for (const neighbor of nodeMetadataMap.get(node).out) {
+      nodeMetadataMap.get(neighbor).in -= 1;
 
-      if (nodeMetadata.get(neighbor).in === 0) {
+      if (nodeMetadataMap.get(neighbor).in === 0) {
         queue.push(neighbor);
       }
     }
-
-    order.push(node);
   }
 
-  return order.length === graphNodes.length ? order : [];
+  return result.length === nodes.length ? result : [];
 }
 ```
