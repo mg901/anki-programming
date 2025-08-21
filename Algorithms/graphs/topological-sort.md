@@ -1,6 +1,6 @@
 ## [Topological Sort 'Kahn'](https://www.greatfrontend.com/questions/algo/topological-sort)
 
-<!-- notecardId: 1755631076514 -->
+<!-- notecardId: 1755803390064 -->
 
 ```js
 // Explanation:
@@ -9,7 +9,7 @@
 
 // Complexity:
 // - Time: O(V + E)
-// - Space: O(V)
+// - Space: O(V + Е)
 export default function topologicalSort(graph) {
   const nodes = Object.keys(graph);
   const nodeMetadataMap = new Map();
@@ -23,27 +23,27 @@ export default function topologicalSort(graph) {
     });
   }
 
-  for (const node of nodes) {
-    for (const neighbor of graph[node]) {
-      nodeMetadataMap.get(neighbor).in += 1;
+  for (const u of nodes) {
+    for (const v of graph[u] ?? []) {
+      nodeMetadataMap.get(v).in += 1;
     }
   }
 
-  for (const [node, metadata] of nodeMetadataMap) {
+  for (const [u, metadata] of nodeMetadataMap) {
     if (metadata.in === 0) {
-      queue.push(node);
+      queue.push(u);
     }
   }
 
   while (queue.length) {
-    const node = queue.shift();
-    result.push(node);
+    const u = queue.shift();
+    result.push(u);
 
-    for (const neighbor of nodeMetadataMap.get(node).out) {
-      nodeMetadataMap.get(neighbor).in -= 1;
+    for (const v of graph[u] ?? []) {
+      nodeMetadataMap.get(v).in -= 1;
 
-      if (nodeMetadataMap.get(neighbor).in === 0) {
-        queue.push(neighbor);
+      if (nodeMetadataMap.get(v).in === 0) {
+        queue.push(v);
       }
     }
   }
