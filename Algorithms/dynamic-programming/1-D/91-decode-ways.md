@@ -1,6 +1,6 @@
 ## [91 Decode Ways](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1754495185646 -->
+<!-- notecardId: 1755864910164 -->
 
 ```js
 // Explanation:
@@ -25,16 +25,13 @@ function numDecodings(s) {
   return dfs(0);
 
   function dfs(i) {
-    if (i === s.length) return 1;
+    if (i === n) return 1;
     if (s[i] === '0') return 0;
     if (cache[i] !== -1) return cache[i];
 
     let res = dfs(i + 1);
 
-    if (
-      i + 1 < s.length &&
-      (s[i] === '1' || (s[i] === '2' && s[i + 1] <= '6'))
-    ) {
+    if (i + 1 < n && (s[i] === '1' || (s[i] === '2' && s[i + 1] <= '6'))) {
       res += dfs(i + 2);
     }
 
@@ -45,6 +42,33 @@ function numDecodings(s) {
 }
 
 // Bottom-up
+// Approach:
+// - Right-to-left traversal
+
+// Complexity:
+// - Time: O(n)
+// - Space: O(n)
+function numDecodings(s) {
+  const n = s.length;
+  const dp = new Uint32Array(n + 1);
+  dp[n] = 1;
+
+  for (let i = n - 1; i >= 0; i -= 1) {
+    if (s[i] === '0') continue;
+
+    dp[i] += dp[i + 1];
+    if (i + 1 < n && (s[i] === '1' || (s[i] === '2' && s[i + 1] <= '6'))) {
+      dp[i] += dp[i + 2];
+    }
+  }
+
+  return dp[0];
+}
+
+// Approach:
+// - Left-to-right traversal
+
+// Complexity:
 // - Time: O(n)
 // - Space: O(n)
 function numDecodings(s) {
@@ -67,5 +91,32 @@ function numDecodings(s) {
   }
 
   return dp[n];
+}
+
+// Space Optimized
+// - Time: O(n)
+// - Space: O(1)
+function numDecodings(s) {
+  const n = s.length;
+
+  let one = 1;
+  let two = 0;
+
+  for (let i = n - 1; i >= 0; i -= 1) {
+    let current = 0;
+
+    if (s[i] !== '0') {
+      current += one;
+
+      if (i + 1 < n && (s[i] === '1' || (s[i] === '2' && s[i + 1] <= '6'))) {
+        current += two;
+      }
+    }
+
+    two = one;
+    one = current;
+  }
+
+  return one;
 }
 ```
