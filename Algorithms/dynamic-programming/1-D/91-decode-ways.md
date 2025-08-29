@@ -1,6 +1,6 @@
 ## [91 Decode Ways](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1755864910164 -->
+<!-- notecardId: 1756417681238 -->
 
 ```js
 // Explanation:
@@ -92,7 +92,13 @@ function numDecodings(s) {
 
   return dp[n];
 }
+```
 
+## [91 Decode Ways 'space-optimized'](https://leetcode.com/problems/decode-ways/description/)
+
+<!-- notecardId: 1756417681241 -->
+
+```js
 // Space Optimized
 // - Time: O(n)
 // - Space: O(1)
