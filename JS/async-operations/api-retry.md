@@ -1,6 +1,6 @@
 ## [API Retry 'promises'](https://frontendlead.com/coding-questions/api-retry)
 
-<!-- notecardId: 1739474977117 -->
+<!-- notecardId: 1757540800926 -->
 
 ```js
 function retryApiCall(fetcher, maxRetries, retryInterval) {
@@ -25,18 +25,18 @@ function retryApiCall(fetcher, maxRetries, retryInterval) {
 
     if (retries === 0) {
       throw new Error(`API call failed after ${maxRetries} retries`);
-    } else {
-      return new Promise((resolve) => {
-        setTimeout(resolve, retryInterval);
-      }).then(makeAttempt);
     }
+
+    return new Promise((resolve) => {
+      setTimeout(resolve, retryInterval);
+    }).then(makeAttempt);
   }
 }
 ```
 
 ## [API Retry 'async/await'](https://frontendlead.com/coding-questions/api-retry)
 
-<!-- notecardId: 1739474977120 -->
+<!-- notecardId: 1757542261695 -->
 
 ```js
 async function retryApiCall(fetcher, maxRetries, duration) {
@@ -46,11 +46,11 @@ async function retryApiCall(fetcher, maxRetries, duration) {
 
       if (response.status === 200) {
         return response;
-      } else {
-        retryOnFail(duration);
       }
+
+      await retryOnFail(duration);
     } catch (error) {
-      retryOnFail(duration);
+      await retryOnFail(duration);
     }
   }
 

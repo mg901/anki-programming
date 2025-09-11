@@ -1,6 +1,6 @@
 ## [Basic debounce](https://bigfrontend.dev/problem/implement-basic-debounce)
 
-<!-- notecardId: 1739474989716 -->
+<!-- notecardId: 1757543923921 -->
 
 ```js
 function debounce(func, wait = 0) {
@@ -10,8 +10,6 @@ function debounce(func, wait = 0) {
     clearTimeout(timerId);
 
     timerId = setTimeout(() => {
-      timerId = undefined;
-
       func.apply(this, args);
     }, wait);
   };
