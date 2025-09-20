@@ -1,16 +1,11 @@
-## [91 Decode Ways](https://leetcode.com/problems/decode-ways/description/)
+## [91 Decode Ways 'top-down'](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1756417681238 -->
+<!-- notecardId: 1758391103216 -->
 
 ```js
 // Explanation:
 // - Neetcode: https://youtu.be/6aEyTjOwlJU
 
-// Sub-pattern:
-// - Fibonacci numbers
-
-// Top-down
-//
 // Without memo:
 // - Time:  O(2^n)
 // - Space: O(n)
@@ -40,6 +35,18 @@ function numDecodings(s) {
     return res;
   }
 }
+```
+
+## [91 Decode Ways 'bottom-up'](https://leetcode.com/problems/decode-ways/description/)
+
+<!-- notecardId: 1758391103217 -->
+
+```js
+// Explanation:
+// - Neetcode: https://youtu.be/6aEyTjOwlJU
+
+// Sub-pattern:
+// - Fibonacci numbers
 
 // Bottom-up
 // Approach:
