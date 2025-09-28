@@ -103,33 +103,35 @@ function numDecodings(s) {
 
 ## [91 Decode Ways 'space-optimized'](https://leetcode.com/problems/decode-ways/description/)
 
-<!-- notecardId: 1756417681241 -->
+<!-- notecardId: 1758582214239 -->
 
 ```js
+// Explanation:
+// - Neetcode: https://youtu.be/6aEyTjOwlJU
+
 // Space Optimized
 // - Time: O(n)
 // - Space: O(1)
 function numDecodings(s) {
   const n = s.length;
-
-  let one = 1;
-  let two = 0;
+  let twoBack = 0; // No ways two steps ahead at the end
+  let oneBack = 1; // One way to decode an empty string: do nothing
 
   for (let i = n - 1; i >= 0; i -= 1) {
     let current = 0;
 
     if (s[i] !== '0') {
-      current += one;
+      current += oneBack;
 
-      if (i + 1 < n && (s[i] === '1' || (s[i] === '2' && s[i + 1] <= '6'))) {
-        current += two;
+      if ((i + 1 < n && s[i] === '1') || (s[i] === '2' && s[i + 1] <= '6')) {
+        current += twoBack;
       }
     }
 
-    two = one;
-    one = current;
+    twoBack = oneBack;
+    oneBack = current;
   }
 
-  return one;
+  return oneBack;
 }
 ```
