@@ -1,7 +1,5 @@
 ## [Is Prime](https://bigfrontend.dev/problem/isPrime)
 
-<!-- notecardId: 1740217472736 -->
-
 ```js
 function isPrime(num) {
   if (num < 2) return false;

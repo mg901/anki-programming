@@ -3,6 +3,8 @@
 <!-- notecardId: 1740329979541 -->
 
 ```js
+// - Time: O(n)
+// - Space: O(1)
 function sort(items, newOrder) {
   let index = 0;
 

@@ -1,7 +1,5 @@
 ## [The largest difference](https://bigfrontend.dev/problem/Find-the-largest-difference)
 
-<!-- notecardId: 1740217479766 -->
-
 ```js
 function largestDiff(arr) {
   if (arr.length < 2) return 0;

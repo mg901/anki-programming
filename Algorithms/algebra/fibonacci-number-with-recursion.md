@@ -1,7 +1,5 @@
 ## [Fibonacci Number with recursion](https://bigfrontend.dev/problem/Generate-Fibonacci-Number-with-recursion)
 
-<!-- notecardId: 1740217406096 -->
-
 ```js
 function fib(n, a = 0, b = 1) {
   if (n === 0) return a;
