@@ -1,6 +1,6 @@
 ## [Encode and Decode Strings](https://neetcode.io/problems/string-encode-and-decode)
 
-<!-- notecardId: 1759008509785 -->
+<!-- notecardId: 1759145526816 -->
 
 ```js
 // Explanation:
@@ -9,13 +9,7 @@
 // - Time: O(n)
 // - Space: O(n)
 function encode(strs) {
-  let encoded = [];
-
-  for (const word of strs) {
-    encoded.push(`${word.length}#${word}`);
-  }
-
-  return encoded.join('');
+  return strs.map((word) => word.length + '#' + word).join('');
 }
 
 // - Time: O(n)
@@ -27,7 +21,6 @@ function decode(str) {
 
   while (i < str.length) {
     let j = i;
-
     while (str[j] !== '#') {
       j += 1;
     }
