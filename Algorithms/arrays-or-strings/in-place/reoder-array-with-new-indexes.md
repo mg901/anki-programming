@@ -1,7 +1,5 @@
 ## [Reorder array with new indexes](https://bigfrontend.dev/problem/reorder-array-with-new-indexes)
 
-<!-- notecardId: 1740329979541 -->
-
 ```js
 // - Time: O(n)
 // - Space: O(1)
