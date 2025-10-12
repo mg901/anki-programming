@@ -1,8 +1,10 @@
 ## [Iterative Lomuto Randomized QuickSort](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
-<!-- notecardId: 1740223563375 -->
-
 ```js
+// // Type: Unstable
+
+// - Time: O(n log(n))
+// - Space: O(h)
 function quickSort(arr) {
   const stack = [[0, arr.length - 1]];
 

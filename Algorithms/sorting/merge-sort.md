@@ -1,8 +1,10 @@
 ## [Merge Sort 'in-place'](https://bigfrontend.dev/problem/implement-Merge-Sort)
 
-<!-- notecardId: 1745180349372 -->
-
 ```js
+// Type: Stable
+
+// - Time: O(n^2)
+// - Space: O(h)
 function mergeSort(arr, left = 0, right = arr.length - 1) {
   if (left >= right) return;
 
@@ -40,9 +42,11 @@ function merge(arr, left, mid, right) {
 
 ## [Merge Sort 'immutable'](https://www.greatfrontend.com/questions/algo/merge-sort?format=algo)
 
-<!-- notecardId: 1739879446694 -->
-
 ```js
+// Type: Stable
+
+// - Time: O(n log(n))
+// - Space: O(n)
 function mergeSort(arr) {
   const { length } = arr;
   if (length < 2) return arr;

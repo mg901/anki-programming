@@ -1,8 +1,10 @@
 ## [Insertion Sort](https://bigfrontend.dev/problem/implement-Insertion-Sort)
 
-<!-- notecardId: 1745329176860 -->
-
 ```js
+// Type: Stable
+
+// - Time: O(n^2)
+// - Space: O(1)
 function insertionSort(arr) {
   const n = arr.length;
   if (n < 2) return;

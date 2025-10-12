@@ -1,8 +1,10 @@
 ## [Bubble Sort](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1745329165836 -->
-
 ```js
+// Type: Stable
+
+// - Time: O(n^2)
+// - Space: O(1)
 function bubbleSort(arr) {
   const n = arr.length;
   if (n < 2) return;
@@ -25,9 +27,11 @@ function swap(arr, i, j) {
 
 ## [Bubble Sort 'optimized'](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1745329165839 -->
-
 ```js
+// Type: Stable
+
+// - Time: O(n^2)
+// - Space: O(1)
 function bubbleSort(arr) {
   let n = arr.length;
   if (n < 2) return;

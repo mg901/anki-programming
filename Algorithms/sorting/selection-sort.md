@@ -1,8 +1,10 @@
 ## [Selection Sort](https://bigfrontend.dev/problem/implement-Selection-Sort)
 
-<!-- notecardId: 1745320531777 -->
-
 ```js
+// Type: Unstable
+
+// - Time: O(n^2)
+// - Space: O(1)
 function selectionSort(arr) {
   const n = arr.length;
   if (n < 2) return;
