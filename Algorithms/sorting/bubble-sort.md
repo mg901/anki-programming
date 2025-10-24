@@ -1,5 +1,7 @@
 ## [Bubble Sort](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
+<!-- notecardId: 1760737338357 -->
+
 ```js
 // Type: Stable
 
@@ -26,6 +28,8 @@ function swap(arr, i, j) {
 ```
 
 ## [Bubble Sort 'optimized'](https://bigfrontend.dev/problem/implement-Bubble-Sort)
+
+<!-- notecardId: 1760737338362 -->
 
 ```js
 // Type: Stable

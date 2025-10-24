@@ -1,6 +1,9 @@
 ## [Merge Sort 'in-place'](https://bigfrontend.dev/problem/implement-Merge-Sort)
 
 ```js
+// Explanation:
+// - CS50: https://youtu.be/Qs3l8_wd_34
+
 // Type: Stable
 
 // - Time: O(n^2)
@@ -43,6 +46,9 @@ function merge(arr, left, mid, right) {
 ## [Merge Sort 'immutable'](https://www.greatfrontend.com/questions/algo/merge-sort?format=algo)
 
 ```js
+// Explanation:
+// - CS50: https://youtu.be/Qs3l8_wd_34
+
 // Type: Stable
 
 // - Time: O(n log(n))

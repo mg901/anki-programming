@@ -1,6 +1,11 @@
 ## [Insertion Sort](https://bigfrontend.dev/problem/implement-Insertion-Sort)
 
+<!-- notecardId: 1760892519355 -->
+
 ```js
+// Explanation:
+// CS50: https://youtu.be/SIrdTFF8-4s
+
 // Type: Stable
 
 // - Time: O(n^2)

@@ -1,7 +1,10 @@
 ## [Iterative Lomuto Randomized QuickSort](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
 ```js
-// // Type: Unstable
+// Explanation:
+// CS50: https://youtu.be/4s-aG6yGGLU
+
+// Type: Unstable
 
 // - Time: O(n log(n))
 // - Space: O(h)

@@ -1,6 +1,11 @@
 ## [Selection Sort](https://bigfrontend.dev/problem/implement-Selection-Sort)
 
+<!-- notecardId: 1760896167243 -->
+
 ```js
+// Explanation:
+// CS50: https://youtu.be/uCbV2xHxalk
+
 // Type: Unstable
 
 // - Time: O(n^2)
