@@ -14,9 +14,9 @@ function rangeRight(start = 0, end, step = 1) {
   }
 
   const result = [];
-  const length = (end - start) / (step || 1);
+  const n = (end - start) / (step || 1);
 
-  for (let i = 0; i < length; i += 1) {
+  for (let i = 0; i < n; i += 1) {
     result.push(i * step + start);
   }
 

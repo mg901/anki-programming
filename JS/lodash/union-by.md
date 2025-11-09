@@ -4,15 +4,15 @@
 
 ```js
 function unionBy(iteratee, ...arrays) {
-  const seen = new Set();
+  const visited = new Set();
   const unique = [];
 
   for (const array of arrays) {
     for (const value of array) {
       const criterion = iteratee(value);
 
-      if (!seen.has(criterion)) {
-        seen.add(criterion);
+      if (!visited.has(criterion)) {
+        visited.add(criterion);
         unique.push(value);
       }
     }
