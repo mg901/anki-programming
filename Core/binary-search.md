@@ -1,0 +1,30 @@
+## [Binary Search](https://leetcode.com/problems/binary-search/description/)
+
+<!-- notecardId: 1762964929457 -->
+
+```js
+// Explanation:
+// - Neetcode: https://youtu.be/s4DPM8ct1pI
+
+// - Time: O(log(n))
+// - Space: O(1)
+function search(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    const mid = left + ((right - left) >> 1);
+    const num = nums[mid];
+
+    if (num === target) return mid;
+
+    if (num < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return -1;
+}
+```

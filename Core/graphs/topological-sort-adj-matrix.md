@@ -1,6 +1,4 @@
-## [207 Course Schedule](https://leetcode.com/problems/course-schedule/description/)
-
-<!-- notecardId: 1756911845540 -->
+## [Topological Sort 'Adj Matrix'](https://leetcode.com/problems/course-schedule/description/)
 
 ```js
 // Algorithm:
@@ -16,7 +14,7 @@
 function canFinish(numCourses, prerequisites) {
   const n = numCourses;
   const graph = Array.from({ length: n }, () => []);
-  const inDegree = new Uint32Array(n);
+  const inDegree = new Array(n);
   const queue = [];
   let count = 0;
 

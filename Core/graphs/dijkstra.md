@@ -1,4 +1,4 @@
-## [Dijkstra]()
+## Dijkstra
 
 ```js
 import { MinPriorityQueue } from '@datastructures-js/priority-queue';
@@ -8,7 +8,7 @@ function dijkstra(n, edges, start) {
   const dist = new Array(n + 1).fill(Infinity);
   dist[start] = 0;
 
-  const minpq = new MinPriorityQueue(([, weight]) => weight);
+  const minpq = new MinPriorityQueue(([, w]) => w);
   minpq.enqueue([start, 0]);
 
   while (!minpq.isEmpty()) {

@@ -1,0 +1,35 @@
+## [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/description/)
+
+```js
+// Explanation:
+// - Neetcode: https://youtu.be/6ZnyEApgFYg
+
+// Complexity:
+// - Time: O(n)
+// - Space: O(n)
+function levelOrder(root) {
+  if (!root) return [];
+
+  let queue = [root];
+  let result = [];
+  let depth = 0;
+
+  while (queue.length) {
+    const size = queue.length;
+    let level = new Array(size);
+
+    for (let i = 0; i < size; i += 1) {
+      const node = queue.shift();
+      level[i] = node.val;
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    result[depth] = level;
+    depth += 1;
+  }
+
+  return result;
+}
+```
