@@ -1,6 +1,6 @@
 ## [Permutations](https://leetcode.com/problems/permutations/description/)
 
-<!-- notecardId: 1762965060721 -->
+<!-- notecardId: 1763130181595 -->
 
 ```js
 // Explanation:

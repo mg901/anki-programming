@@ -1,39 +1,37 @@
 ## [Data merging](https://www.greatfrontend.com/interviews/study/gfe75/questions/javascript/data-merging)
 
-<!-- notecardId: 1739454836934 -->
+<!-- notecardId: 1763485051852 -->
 
 ```js
-function mergeData(sessions) {
-  const map = new Map();
+export default function mergeData(sessions) {
+  const userToData = new Map();
 
-  for (const session of sessions) {
-    const { user, duration, equipment } = session;
+  for (const { user, duration, equipment } of sessions) {
+    let data = userToData.get(user);
 
-    if (!map.has(user)) {
-      map.set(user, {
-        duration,
-        equipment: new Set(equipment),
-      });
-    } else {
-      const item = map.get(user);
-      item.duration += duration;
+    if (!data) {
+      data = {
+        duration: 0,
+        equipment: new Set(),
+      };
 
-      for (const value of equipment) {
-        item.equipment.add(value);
-      }
+      userToData.set(user, data);
+    }
+
+    data.duration += duration;
+
+    for (const item of equipment) {
+      data.equipment.add(item);
     }
   }
 
-  const result = [];
-
-  for (const [user, { duration, equipment }] of map) {
-    result.push({
+  return userToData
+    .entries()
+    .map(([user, data]) => ({
       user,
-      duration,
-      equipment: Array.from(equipment).sort(),
-    });
-  }
-
-  return result;
+      duration: data.duration,
+      equipment: Array.from(data.equipment).sort(),
+    }))
+    .toArray();
 }
 ```

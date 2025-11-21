@@ -1,6 +1,6 @@
-## [EventEmitter 2](https://www.greatfrontend.com/questions/javascript/event-emitter-ii?language=js)
+## [Event Emitter](https://www.greatfrontend.com/interviews/study/data-structures-algorithms/questions/javascript/event-emitter)
 
-<!-- notecardId: 1763487062479 -->
+<!-- notecardId: 1763487066154 -->
 
 ```js
 export default class EventEmitter {
@@ -18,19 +18,24 @@ export default class EventEmitter {
 
     listeners.push(listener);
 
-    return {
-      off: () => {
-        const index = listeners.indexOf(listener);
+    return this;
+  }
 
-        if (index > -1) {
-          listeners.splice(index, 1);
+  off(eventName, listener) {
+    const listeners = this.listenersByName.get(eventName);
+    if (!listeners) return this;
 
-          if (listeners.length === 0) {
-            this.listenersByName.delete(eventName);
-          }
-        }
-      },
-    };
+    const index = listeners.indexOf(listener);
+
+    if (index > -1) {
+      listeners.splice(index, 1);
+
+      if (listeners.length === 0) {
+        this.listenersByName.delete(eventName);
+      }
+    }
+
+    return this;
   }
 
   emit(eventName, ...args) {

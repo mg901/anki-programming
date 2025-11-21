@@ -1,6 +1,6 @@
-## [131 Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/description/)
+## [Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/description/)
 
-<!-- notecardId: 1763208439242 -->
+<!-- notecardId: 1763217613800 -->
 
 ```js
 // Explanation:
@@ -16,18 +16,18 @@ function partition(s) {
 
   return result;
 
-  function backtrack(start, part) {
+  function backtrack(start, path) {
     if (start === n) {
-      result.push([...part]);
+      result.push([...path]);
 
       return;
     }
 
     for (let end = start + 1; end <= n; end += 1) {
-      const prefix = s.slice(start, end);
+      const substr = s.slice(start, end);
 
-      if (isPalindrome(prefix)) {
-        path.push(prefix);
+      if (isPalindrome(substr)) {
+        path.push(substr);
         backtrack(end, path);
         path.pop();
       }
@@ -35,12 +35,15 @@ function partition(s) {
   }
 }
 
-function isPalindrome(s) {
+function isPalindrome(str) {
+  const n = str.length;
+  if (n === 1) return true;
+
   let left = 0;
-  let right = s.length - 1;
+  let right = n - 1;
 
   while (left < right) {
-    if (s[left] !== s[right]) return false;
+    if (str[left] !== str[right]) return false;
 
     left += 1;
     right -= 1;

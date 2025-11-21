@@ -1,12 +1,15 @@
-## [Reorder array with new indexes](https://bigfrontend.dev/problem/reorder-array-with-new-indexes)
+## [Reorder array with new indexes 'cyclic-sort'](https://bigfrontend.dev/problem/reorder-array-with-new-indexes)
+
+<!-- notecardId: 1763722239069 -->
 
 ```js
 // - Time: O(n)
 // - Space: O(1)
 function sort(items, newOrder) {
+  const n = items.length;
   let index = 0;
 
-  while (index < items.length) {
+  while (index < n) {
     if (newOrder[index] !== index) {
       const newIndex = newOrder[index];
 
@@ -18,9 +21,9 @@ function sort(items, newOrder) {
   }
 }
 
-function swap(arr, from, to) {
-  const temp = arr[to];
-  arr[to] = arr[from];
-  arr[from] = temp;
+function swap(arr, i, j) {
+  const temp = arr[j];
+  arr[j] = arr[i];
+  arr[i] = temp;
 }
 ```
