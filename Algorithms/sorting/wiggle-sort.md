@@ -1,6 +1,15 @@
 ## [Wiggle Sort](https://www.lintcode.com/problem/508/)
 
+<!-- notecardId: 1763823655978 -->
+
 ```python
+# Explanation:
+# - Neetcode: https://youtu.be/vGsyTE4s34w
+
+# Type: Unstable
+
+# - Time: O(n log n)
+# - Space: O(1)
 from typing import List
 
 class Solution:
