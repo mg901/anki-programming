@@ -1,0 +1,26 @@
+## [253 Meeting Rooms II](https://neetcode.io/problems/meeting-schedule-ii)
+
+```js
+function minMeetingRooms(intervals) {
+  const timeline = [];
+
+  for (const { start, end } of intervals) {
+    timeline.push({ time: start, delta: 1 });
+    timeline.push({ time: end, delta: -1 });
+  }
+
+  timeline.sort((a, b) =>
+    a.time === b.time ? a.delta - b.delta : a.time - b.time,
+  );
+
+  let maxRooms = 0;
+  let ongoingMeetings = 0;
+
+  for (const { delta } of timeline) {
+    ongoingMeetings += delta;
+    maxRooms = Math.max(maxRooms, ongoingMeetings);
+  }
+
+  return maxRooms;
+}
+```

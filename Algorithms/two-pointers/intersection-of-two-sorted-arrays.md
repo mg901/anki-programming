@@ -1,14 +1,19 @@
 ## [Intersection of two sorted arrays](https://bigfrontend.dev/problem/intersection-of-two0-sorted-Arrays)
 
-<!-- notecardId: 1739477104916 -->
+<!-- notecardId: 1763930775987 -->
 
 ```js
+// - Time: O(n + m)
+// - Space: O(1)
 function intersect(arr1, arr2) {
+  const n = arr1.length;
+  const m = arr2.length;
+
   let i = 0;
   let j = 0;
   const result = [];
 
-  while (i < arr1.length && j < arr2.length) {
+  while (i < n && j < m) {
     if (arr1[i] === arr2[j]) {
       result.push(arr1[i]);
 

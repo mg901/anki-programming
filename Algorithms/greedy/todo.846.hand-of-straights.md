@@ -1,0 +1,30 @@
+## [846 Hand of Straights](https://leetcode.com/problems/hand-of-straights/description/)
+
+```js
+function isNStraightHand(hand, groupSize) {
+  if (hand.length % groupSize !== 0) return false;
+
+  const numFreqMap = new Map();
+
+  for (const num of hand) {
+    numFreqMap.set(num, (numFreqMap.get(num) ?? 0) + 1);
+  }
+
+  hand.sort((a, b) => a - b);
+
+  for (const num of hand) {
+    const freq = numFreqMap.get(num);
+    if (!freq) continue;
+
+    for (let i = 0; i < groupSize; i += 1) {
+      const current = i + num;
+      const currentFreq = numFreqMap.get(current);
+      if (!currentFreq) return false;
+
+      numFreqMap.set(current, currentFreq - 1);
+    }
+  }
+
+  return true;
+}
+```

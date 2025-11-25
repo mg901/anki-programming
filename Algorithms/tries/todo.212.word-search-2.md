@@ -1,0 +1,81 @@
+## [212 Word Search II](https://leetcode.com/problems/word-search-ii/description/)
+
+```js
+class TrieNode {
+  children = new Map();
+
+  word = null;
+
+  insert(word) {
+    let node = this;
+
+    for (const char of word) {
+      if (!node.children.has(char)) {
+        node.children.set(char, new TrieNode());
+      }
+
+      node = node.children.get(char);
+    }
+
+    node.word = word;
+  }
+}
+
+function createTrie(words) {
+  const root = new TrieNode();
+
+  for (const word of words) {
+    root.insert(word);
+  }
+
+  return root;
+}
+
+function findWords(board, words) {
+  const trie = createTrie(words);
+  const result = [];
+  const rows = board.length;
+  const cols = board[0].length;
+
+  for (let r = 0; r < rows; r += 1) {
+    for (let c = 0; c < cols; c += 1) {
+      backtrack(r, c, trie);
+    }
+  }
+
+  return result;
+
+  function backtrack(row, col, node) {
+    const char = board[row][col];
+    const child = node.children.get(char);
+    if (!child) return;
+
+    if (child.word) {
+      result.push(child.word);
+      child.word = null;
+    }
+
+    board[row][col] = '#';
+
+    const directions = [
+      [1, 0], // down
+      [-1, 0], // up
+      [0, 1], // right
+      [0, -1], // left
+    ];
+
+    for (const [dr, dc] of directions) {
+      const r = row + dr;
+      const c = col + dc;
+
+      if (r < 0 || c < 0 || r >= rows || c >= cols || board[r][c] === '#') {
+        continue;
+      }
+
+      backtrack(r, c, child);
+    }
+
+    board[row][col] = char;
+  }
+}
+```

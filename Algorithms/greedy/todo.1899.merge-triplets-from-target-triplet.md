@@ -1,0 +1,24 @@
+## [1899 Merge Triplets to Form Target Triplet](https://leetcode.com/problems/merge-triplets-to-form-target-triplet/description/)
+
+```js
+function mergeTriplets(triplets, target) {
+  const set = new Set();
+
+  for (const triplet of triplets) {
+    if (
+      triplet[0] > target[0] ||
+      triplet[1] > target[1] ||
+      triplet[2] > target[2]
+    )
+      continue;
+
+    for (let i = 0; i < triplet.length; i += 1) {
+      if (triplet[i] !== target[i]) continue;
+
+      set.add(i);
+    }
+  }
+
+  return set.size === 3;
+}
+```
