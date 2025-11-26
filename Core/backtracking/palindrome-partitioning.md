@@ -1,6 +1,6 @@
 ## [Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/description/)
 
-<!-- notecardId: 1763217613800 -->
+<!-- notecardId: 1764107871710 -->
 
 ```js
 // Explanation:
@@ -36,19 +36,6 @@ function partition(s) {
 }
 
 function isPalindrome(str) {
-  const n = str.length;
-  if (n === 1) return true;
-
-  let left = 0;
-  let right = n - 1;
-
-  while (left < right) {
-    if (str[left] !== str[right]) return false;
-
-    left += 1;
-    right -= 1;
-  }
-
-  return true;
+  return str === str.split('').reverse().join('');
 }
 ```
