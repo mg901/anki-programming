@@ -2,18 +2,18 @@
 
 ```js
 function kClosest(points, k) {
-  const pq = new MaxPriorityQueue((item) => item[0]);
+  const maxpq = new MaxPriorityQueue((item) => item[0]);
 
   for (const [x, y] of points) {
     const distance = x ** 2 + y ** 2;
 
-    pq.enqueue([distance, x, y]);
+    maxpq.enqueue([distance, x, y]);
 
-    if (pq.size() > k) {
-      pq.dequeue();
+    if (maxpq.size() > k) {
+      maxpq.dequeue();
     }
   }
 
-  return pq.toArray().map(([_, x, y]) => [x, y]);
+  return maxpq.toArray().map(([_, x, y]) => [x, y]);
 }
 ```

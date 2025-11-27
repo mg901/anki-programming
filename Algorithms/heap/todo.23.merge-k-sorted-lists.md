@@ -5,28 +5,22 @@ function mergeKLists(lists) {
   const minpq = new MinPriorityQueue((node) => node.val);
 
   for (const node of lists) {
-    if (!node) continue;
-
-    minpq.enqueue(node);
+    if (node) {
+      minpq.enqueue(node);
+    }
   }
 
-  let head = null;
-  let tail = null;
+  const dummy = new ListNode(0);
+  let current = dummy;
 
   while (!minpq.isEmpty()) {
     const node = minpq.dequeue();
-
-    if (!head) {
-      head = node;
-      tail = node;
-    } else {
-      tail.next = node;
-      tail = node;
-    }
-
     if (node.next) minpq.enqueue(node.next);
+
+    current.next = node;
+    current = current.next;
   }
 
-  return head;
+  return dummy.next;
 }
 ```

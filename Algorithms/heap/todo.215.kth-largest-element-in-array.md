@@ -2,16 +2,16 @@
 
 ```js
 function findKthLargest(nums, k) {
-  const pq = new MinPriorityQueue();
+  const minpq = new MinPriorityQueue();
 
   for (const num of nums) {
-    pq.enqueue(num);
+    minpq.enqueue(num);
 
-    if (pq.size() > k) {
-      pq.dequeue();
+    if (minpq.size() > k) {
+      minpq.dequeue();
     }
   }
 
-  return pq.front();
+  return minpq.front();
 }
 ```

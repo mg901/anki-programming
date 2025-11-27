@@ -4,27 +4,27 @@
 class KthLargest {
   constructor(k, nums) {
     this.k = k;
-    const pq = new MinPriorityQueue();
+    const minpq = new MinPriorityQueue();
 
     for (const num of nums) {
-      pq.enqueue(num);
+      minpq.enqueue(num);
 
-      if (pq.size() > k) {
-        pq.dequeue();
+      if (minpq.size() > k) {
+        minpq.dequeue();
       }
     }
 
-    this.pq = pq;
+    this.minpq = minpq;
   }
 
   add(val) {
-    this.pq.enqueue(val);
+    this.minpq.enqueue(val);
 
-    if (this.pq.size() > this.k) {
-      this.pq.dequeue();
+    if (this.minpq.size() > this.k) {
+      this.minpq.dequeue();
     }
 
-    return this.pq.front();
+    return this.minpq.front();
   }
 }
 ```

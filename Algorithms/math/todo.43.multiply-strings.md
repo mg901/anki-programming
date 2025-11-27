@@ -19,9 +19,9 @@ function multiply(num1, num2) {
       const digit1 = +num1[i];
       const digit2 = +num2[j];
 
-      const sum = result[i + j + 1] + digit1 * digit2;
-      result[i + j + 1] = sum % RADIX;
-      result[i + j] += (sum / RADIX) ^ 0;
+      const value = result[i + j + 1] + digit1 * digit2;
+      result[i + j + 1] = value % RADIX;
+      result[i + j] += (value / RADIX) ^ 0;
     }
   }
 

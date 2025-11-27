@@ -2,34 +2,34 @@
 
 ```js
 class MedianFinder {
-  #small = new MaxPriorityQueue();
+  #minpq = new MaxPriorityQueue();
 
-  #large = new MinPriorityQueue();
+  #maxpq = new MinPriorityQueue();
 
   addNum(num) {
-    if (this.#large.isEmpty() || num > this.#large.front()) {
-      this.#large.enqueue(num);
+    if (this.#maxpq.isEmpty() || num > this.#maxpq.front()) {
+      this.#maxpq.enqueue(num);
     } else {
-      this.#small.enqueue(num);
+      this.#minpq.enqueue(num);
     }
 
     this.#makeBalanced();
   }
 
   #makeBalanced() {
-    if (this.#small.size() > this.#large.size()) {
-      this.#large.enqueue(this.#small.dequeue());
-    } else if (this.#large.size() > this.#small.size() + 1) {
-      this.#small.enqueue(this.#large.dequeue());
+    if (this.#minpq.size() > this.#maxpq.size()) {
+      this.#maxpq.enqueue(this.#minpq.dequeue());
+    } else if (this.#maxpq.size() > this.#minpq.size() + 1) {
+      this.#minpq.enqueue(this.#maxpq.dequeue());
     }
   }
 
   findMedian() {
-    if (this.#large.size() > this.#small.size()) {
-      return this.#large.front();
+    if (this.#maxpq.size() > this.#minpq.size()) {
+      return this.#maxpq.front();
     }
 
-    return (this.#small.front() + this.#large.front()) / 2;
+    return (this.#minpq.front() + this.#maxpq.front()) / 2;
   }
 }
 ```

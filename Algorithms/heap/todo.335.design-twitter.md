@@ -13,22 +13,19 @@ class Twitter {
   #count = 0;
 
   postTweet(userId, tweetId) {
-    if (!this.#tweets.has(userId)) {
-      this.#tweets.set(userId, []);
+    const tweets = this.#tweets.get(userId) ?? [];
+    this.#tweets.set(userId, tweets);
+
+    if (tweets.length > this.#feedLimit) {
+      tweets.shift();
     }
-
-    const tweetsById = this.#tweets.get(userId);
-
-    tweetsById.push({
-      tweetId,
-      count: this.#count,
-    });
 
     this.#count += 1;
 
-    if (tweetsById.length > this.#feedLimit) {
-      tweetsById.shift();
-    }
+    tweets.push({
+      tweetId,
+      count: this.#count,
+    });
   }
 
   getNewsFeed(userId) {
@@ -69,11 +66,14 @@ class Twitter {
   }
 
   follow(followerId, followeeId) {
-    if (!this.#followeeIds.has(followerId)) {
-      this.#followeeIds.set(followerId, new Set());
+    let followeeIds = this.#followeeIds.get(followerId);
+
+    if (!followeeIds) {
+      followeeIds = new Set();
+      this.#followeeIds.set(followerId, followeeIds);
     }
 
-    this.#followeeIds.get(followerId).add(followeeId);
+    followeeIds.add(followeeId);
   }
 
   unfollow(followerId, followeeId) {

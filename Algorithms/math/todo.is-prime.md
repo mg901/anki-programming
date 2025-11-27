@@ -1,6 +1,8 @@
 ## [Is Prime](https://bigfrontend.dev/problem/isPrime)
 
 ```js
+// - Time: O()
+// - Space: O(1)
 function isPrime(num) {
   if (num < 2) return false;
 

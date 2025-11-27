@@ -1,6 +1,11 @@
 ## [69 Sqrt(x)](https://leetcode.com/problems/sqrtx/description/)
 
 ```js
+// Explanation:
+// - Neetcode: https://youtu.be/zdMhGxRWutQ
+
+// - Time: O(log(n))
+// - Space: O(1)
 function mySqrt(x) {
   let left = 1;
   let right = (x >> 1) + 1;
