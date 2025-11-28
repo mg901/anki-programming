@@ -7,10 +7,10 @@
 // - Time: O(n)
 // - Space: O(1)
 function partitionLabels(s) {
-  const ALPHABET_SIZE = 26;
-  const lastIndexes = new Uint8Array(ALPHABET_SIZE);
-  const codeA = 'a'.codePointAt(0);
   const n = s.length;
+  const ALPHABET_SIZE = 26;
+  const codeA = 'a'.codePointAt(0);
+  const lastIndexes = new Uint8Array(ALPHABET_SIZE);
 
   for (let i = 0; i < n; i += 1) {
     lastIndexes[s.codePointAt(i) - codeA] = i;

@@ -3,6 +3,7 @@
 ```js
 function merge(intervals) {
   const n = intervals.length;
+
   if (n < 2) return intervals;
 
   intervals.sort((a, b) => a[0] - b[0]);

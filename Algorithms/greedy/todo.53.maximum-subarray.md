@@ -2,18 +2,18 @@
 
 ```js
 function maxSubArray(nums) {
-  let maxSum = -Infinity;
+  let max = -Infinity;
   let sum = 0;
 
   for (const num of nums) {
     sum += num;
-    maxSum = Math.max(maxSum, sum);
+    max = Math.max(max, sum);
 
     if (sum < 0) {
       sum = 0;
     }
   }
 
-  return maxSum;
+  return max;
 }
 ```

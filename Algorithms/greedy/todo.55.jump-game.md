@@ -2,9 +2,10 @@
 
 ```js
 function canJump(nums) {
-  let goal = nums.length - 1;
+  const n = nums.length;
+  let goal = n - 1;
 
-  for (let i = nums.length - 2; i >= 0; i -= 1) {
+  for (let i = n - 2; i >= 0; i -= 1) {
     if (i + nums[i] >= goal) {
       goal = i;
     }

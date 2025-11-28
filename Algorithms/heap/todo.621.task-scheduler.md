@@ -3,15 +3,14 @@
 ```js
 function leastInterval(tasks, n) {
   const counter = new Map();
+  const maxpq = new MaxPriorityQueue();
 
   for (const task of tasks) {
     counter.set(task, (counter.get(task) ?? 0) + 1);
   }
 
-  const maxpq = new MaxPriorityQueue();
-
-  for (const freq of counter.values()) {
-    maxpq.enqueue(freq);
+  for (const count of counter.values()) {
+    maxpq.enqueue(count);
   }
 
   let time = 0;

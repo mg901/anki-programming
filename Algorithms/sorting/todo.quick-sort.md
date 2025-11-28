@@ -16,21 +16,21 @@ function quickSort(arr) {
 
     if (left >= right) continue;
 
-    const partitionIndex = randomizedPartition(arr, left, right);
+    const partitionIdx = randomizedPartition(arr, left, right);
 
-    if (partitionIndex - left < right - partitionIndex) {
-      stack.push([left, partitionIndex - 1]);
-      stack.push([partitionIndex + 1, right]);
+    if (partitionIdx - left < right - partitionIdx) {
+      stack.push([left, partitionIdx - 1]);
+      stack.push([partitionIdx + 1, right]);
     } else {
-      stack.push([partitionIndex + 1, right]);
-      stack.push([left, partitionIndex - 1]);
+      stack.push([partitionIdx + 1, right]);
+      stack.push([left, partitionIdx - 1]);
     }
   }
 }
 
 function randomizedPartition(array, left, right) {
-  const randomIndex = getInclusiveRandom(left, right);
-  swap(array, randomIndex, right);
+  const randomIdx = getInclusiveRandom(left, right);
+  swap(array, randomIdx, right);
 
   return partition(array, left, right);
 }
@@ -55,9 +55,9 @@ function partition(array, left, right) {
   return i;
 }
 
-function swap(arr, from, to) {
-  const temp = arr[to];
-  arr[to] = arr[from];
-  arr[from] = temp;
+function swap(arr, i, i) {
+  const temp = arr[i];
+  arr[i] = arr[i];
+  arr[i] = temp;
 }
 ```

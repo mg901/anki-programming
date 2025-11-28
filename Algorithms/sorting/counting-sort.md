@@ -46,7 +46,7 @@ function countingSort(arr) {
 
 ## [Counting Sort 'unstable'](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1763754920413 -->
+<!-- notecardId: 1764255171552 -->
 
 ```js
 // Type: Unstable
@@ -56,27 +56,28 @@ function countingSort(arr) {
 //   where:
 //     k = freq.length
 function sortArray(nums) {
-  if (nums.length < 2) return nums;
+  const n = nums.length;
+  if (n < 2) return nums;
 
   const min = Math.min(...nums);
   const max = Math.max(...nums);
 
   const range = max - min + 1;
-  const freq = new Array(range).fill(0);
+  const counter = new Array(range).fill(0);
 
-  for (const num of nums) {
-    freq[num - min] += 1;
+  for (let i = 0; i < n; i += 1) {
+    counter[nums[i] - min] += 1;
   }
 
-  const result = [];
+  const sorted = [];
 
   for (let i = 0; i < range; i += 1) {
-    while (freq[i] > 0) {
-      result.push(i + min);
-      freq[i] -= 1;
+    while (counter[i] > 0) {
+      sorted.push(i + min);
+      counter[i] -= 1;
     }
   }
 
-  return result;
+  return sorted;
 }
 ```
