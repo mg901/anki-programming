@@ -13,9 +13,8 @@ function mySqrt(x) {
   while (left <= right) {
     const mid = left + ((right - left) >> 1);
 
-    if (mid * mid === x) {
-      return mid;
-    }
+    if (mid * mid === x) return mid;
+
     if (mid * mid > x) {
       right = mid - 1;
     } else {

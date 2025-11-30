@@ -14,8 +14,8 @@ class DetectSquares {
       this.#points.set(x, new Map());
     }
 
-    const yCountMap = this.#points.get(x);
-    yCountMap.set(y, (yCountMap.get(y) ?? 0) + 1);
+    const counterY = this.#points.get(x);
+    counterY.set(y, (counterY.get(y) ?? 0) + 1);
 
     return this;
   }
@@ -25,7 +25,7 @@ class DetectSquares {
     let count = 0;
     if (!this.#points.has(x)) return 0;
 
-    for (const [otherX, yCountMap] of this.#points) {
+    for (const [otherX, counterY] of this.#points) {
       if (otherX === x) continue;
 
       const diff = x - otherX;
@@ -33,9 +33,9 @@ class DetectSquares {
       for (const deltaY of [diff, -diff]) {
         const otherY = y + deltaY;
 
-        const count1 = yCountMap.get(otherY) ?? 0;
+        const count1 = counterY.get(otherY) ?? 0;
         const count2 = this.#points.get(x).get(otherY) ?? 0;
-        const count3 = yCountMap.get(y) ?? 0;
+        const count3 = counterY.get(y) ?? 0;
 
         count += count1 * count2 * count3;
       }
