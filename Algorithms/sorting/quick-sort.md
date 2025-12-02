@@ -118,6 +118,8 @@ function swap(arr, i, j) {
 
 ## [Iterative QuickSort 'Randomized Haore Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
+<!-- notecardId: 1764693263706 -->
+
 ```js
 // Explanation:
 // CS50: https://youtu.be/4s-aG6yGGLU
@@ -141,14 +143,14 @@ function quickSort(arr) {
     let [left, right] = stack.pop();
 
     while (left < right) {
-      const pivotIdx = randomizedPartition(arr, left, right);
+      const boundary = randomizedPartition(arr, left, right);
 
-      if (pivotIdx - left < right - pivotIdx) {
-        stack.push([pivotIdx + 1, right]);
-        right = pivotIdx;
+      if (boundary - left < right - boundary) {
+        stack.push([boundary + 1, right]);
+        right = boundary;
       } else {
-        stack.push([left, pivotIdx]);
-        left = pivotIdx + 1;
+        stack.push([left, boundary]);
+        left = boundary + 1;
       }
     }
   }
