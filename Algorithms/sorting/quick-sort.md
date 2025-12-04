@@ -35,9 +35,9 @@ export default function quickSort(arr) {
 }
 ```
 
-## [QuickSort 'Randomized Lomuto Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
+## [Quick Sort 'Randomized Lomuto Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
-<!-- notecardId: 1764539480529 -->
+<!-- notecardId: 1764696281857 -->
 
 ```js
 // Explanation:
@@ -64,6 +64,8 @@ function quickSort(arr) {
     let [left, right] = stack.pop();
 
     while (left < right) {
+      // low <= pivotIdx - 1
+      // pivotIdx + 1 >= high
       const pivotIdx = randomizedPartition(arr, left, right);
 
       if (pivotIdx - left < right - pivotIdx) {
@@ -116,13 +118,13 @@ function swap(arr, i, j) {
 }
 ```
 
-## [Iterative QuickSort 'Randomized Haore Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
+## [Quick Sort 'Randomized Haore Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
-<!-- notecardId: 1764693263706 -->
+<!-- notecardId: 1764696281861 -->
 
 ```js
 // Explanation:
-// CS50: https://youtu.be/4s-aG6yGGLU
+// Bukan Cara Cepat: https://youtu.be/NuQYFXmLUrM
 
 // Type: Unstable
 
@@ -143,6 +145,8 @@ function quickSort(arr) {
     let [left, right] = stack.pop();
 
     while (left < right) {
+      // low <= boundary
+      // boundary + 1 <= high
       const boundary = randomizedPartition(arr, left, right);
 
       if (boundary - left < right - boundary) {

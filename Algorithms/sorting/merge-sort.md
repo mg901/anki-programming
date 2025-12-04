@@ -118,3 +118,71 @@ function merge(arr, temp, left, mid, right) {
   }
 }
 ```
+
+## [Merge Sort 'bottom-up'](https://bigfrontend.dev/problem/implement-Merge-Sort)
+
+```js
+// Explanation:
+// - CS50: https://youtu.be/Qs3l8_wd_34
+
+// Type: Stable
+
+// - Time: O(n log(n))
+// - Space: O(n)
+function mergeSort(arr) {
+  const n = arr.length;
+  if (n < 2) return;
+
+  const temp = new Array(n);
+  let size = 1;
+
+  while (size < n) {
+    let left = 0;
+
+    while (left < n) {
+      const mid = Math.min(left + size - 1, n - 1);
+      const right = Math.min(left + size * 2 - 1, n - 1);
+
+      merge(arr, temp, left, mid, right);
+
+      left = right + 1;
+    }
+
+    size *= 2;
+  }
+}
+
+function merge(arr, temp, left, mid, right) {
+  let i = left;
+  let j = mid + 1;
+  let k = left;
+
+  while (i <= mid && j <= right) {
+    if (arr[i] <= arr[j]) {
+      temp[k] = arr[i];
+      i += 1;
+    } else {
+      temp[k] = arr[j];
+      j += 1;
+    }
+
+    k += 1;
+  }
+
+  while (i <= mid) {
+    temp[k] = arr[i];
+    i += 1;
+    k += 1;
+  }
+
+  while (j <= right) {
+    temp[k] = arr[j];
+    j += 1;
+    k += 1;
+  }
+
+  for (let l = left; l <= right; l += 1) {
+    arr[l] = temp[l];
+  }
+}
+```

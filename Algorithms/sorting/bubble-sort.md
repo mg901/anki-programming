@@ -47,18 +47,12 @@ function bubbleSort(arr) {
 
     for (let i = 1; i < n; i += 1) {
       if (arr[i - 1] > arr[i]) {
-        swap(arr, i - 1, i);
+        [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]];
         swapped = true;
       }
     }
 
     n -= 1;
   } while (swapped);
-}
-
-function swap(arr, i, j) {
-  const temp = arr[j];
-  arr[j] = arr[i];
-  arr[i] = temp;
 }
 ```
