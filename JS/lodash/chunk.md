@@ -3,22 +3,16 @@
 <!-- notecardId: 1739697587549 -->
 
 ```js
-function chunk(array, size = 1) {
+export default function chunk(array, size = 1) {
   if (!array.length) return array;
 
-  const result = [];
+  return array.reduce((acc, item, index) => {
+    const idx = Math.floor(index / size);
 
-  for (let i = 0; i < array.length; i += 1) {
-    const chunkIndex = Math.floor(i / size);
+    (acc[idx] ??= []).push(item);
 
-    if (result[chunkIndex] === undefined) {
-      result[chunkIndex] = [];
-    }
-
-    result[chunkIndex].push(array[i]);
-  }
-
-  return result;
+    return acc;
+  }, []);
 }
 
 // or

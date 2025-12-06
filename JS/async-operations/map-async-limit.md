@@ -98,8 +98,8 @@ function mapAsyncLimit(iterable, callbackFn, size = Infinity) {
           })
           .finally(() => {
             semaphore.release();
-          })
-      )
+          }),
+      ),
     );
   }
 

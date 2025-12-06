@@ -11,19 +11,19 @@ function flat(source, depth = 1) {
 }
 
 function flattenIntoArray(target, source, targetIndex, depth) {
-  let sourceIndex = 0;
+  let sourceIdx = 0;
 
-  while (sourceIndex < source.length) {
-    const item = source[sourceIndex];
+  while (sourceIdx < source.length) {
+    const item = source[sourceIdx];
 
     if (depth > 0 && Array.isArray(item)) {
       targetIndex = flattenIntoArray(target, item, targetIndex, depth - 1);
-    } else if (sourceIndex in source) {
+    } else if (sourceIdx in source) {
       target[targetIndex] = item;
       targetIndex += 1;
     }
 
-    sourceIndex += 1;
+    sourceIdx += 1;
   }
 
   return targetIndex;

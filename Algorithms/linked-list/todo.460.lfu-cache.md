@@ -2,7 +2,7 @@
 
 ```js
 class LFUCache {
-  #capability;
+  capability;
 
   #size = 0;
 
@@ -15,7 +15,7 @@ class LFUCache {
   #freqToList = new Map();
 
   constructor(capacity) {
-    this.#capability = capacity;
+    this.capability = capacity;
   }
 
   get(key) {
@@ -26,7 +26,7 @@ class LFUCache {
   }
 
   put(key, value) {
-    if (this.#capability === 0) return;
+    if (this.capability === 0) return;
 
     if (this.#keyToNode.has(key)) {
       const node = this.#keyToNode.get(key);
@@ -36,12 +36,12 @@ class LFUCache {
       return;
     }
 
-    if (this.#size === this.#capability) {
+    if (this.#size === this.capability) {
       this.#evictLFU();
     }
 
     const freq = 1;
-    const list = this.#freqToList.get(freq) ?? new DoublyLinkedList();
+    const list = this.#getList(freq);
     const node = list.insertFirst({ key, value });
 
     this.#freqToList.set(freq, list);
@@ -64,12 +64,16 @@ class LFUCache {
     }
 
     const newFreq = freq + 1;
-    const nextList = this.#freqToList.get(newFreq) ?? new DoublyLinkedList();
+    const nextList = this.#getList(newFreq);
     const newNode = nextList.insertFirst(node.getValue());
 
     this.#freqToList.set(newFreq, nextList);
     this.#keyToNode.set(key, newNode);
     this.#keyToFreq.set(key, newFreq);
+  }
+
+  #getList(freq) {
+    return this.#freqToList.get(freq) ?? new DoublyLinkedList();
   }
 
   #evictLFU() {
@@ -79,9 +83,7 @@ class LFUCache {
     this.#keyToNode.delete(key);
     this.#keyToFreq.delete(key);
 
-    if (list.isEmpty()) {
-      this.#freqToList.delete(this.#minFreq);
-    }
+    if (list.isEmpty()) this.#freqToList.delete(this.#minFreq);
 
     this.#size -= 1;
   }

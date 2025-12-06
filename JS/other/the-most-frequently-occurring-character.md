@@ -1,26 +1,26 @@
 ## [The most frequently occurring character](https://bigfrontend.dev/problem/most-frequently-occurring-character)
 
-<!-- notecardId: 1739454890811 -->
-
 ```js
+// - Time: O(n)
+// - Space: O(n)
 function count(str) {
-  if (!str.length) return str;
-
-  const map = new Map();
+  const counter = new Map();
+  let result = [];
+  let max = 0;
 
   for (const char of str) {
-    map.set(char, (map.get(char) ?? 0) + 1);
-  }
+    counter.set(char, (counter.get(char) ?? 0) + 1);
 
-  const max = Math.max(...map.values());
-  const result = [];
+    if (counter.get(char) > max) {
+      result = [];
+      max = counter.get(char);
+    }
 
-  for (const [key, freq] of map) {
-    if (freq === max) {
-      result.push(key);
+    if (counter.get(char) === max) {
+      result.push(char);
     }
   }
 
-  return result.length === 1 ? result.at(0) : result;
+  return result.length > 1 ? result : result[0];
 }
 ```
