@@ -5,27 +5,18 @@
 ```js
 function flat(source, depth = 1) {
   const result = [];
-  flattenIntoArray(result, source, 0, depth);
+  flatten(source, depth);
 
   return result;
-}
 
-function flattenIntoArray(target, source, targetIndex, depth) {
-  let sourceIdx = 0;
-
-  while (sourceIdx < source.length) {
-    const item = source[sourceIdx];
-
-    if (depth > 0 && Array.isArray(item)) {
-      targetIndex = flattenIntoArray(target, item, targetIndex, depth - 1);
-    } else if (sourceIdx in source) {
-      target[targetIndex] = item;
-      targetIndex += 1;
+  function flatten(source, depth) {
+    for (const item of source) {
+      if (depth > 0 && Array.isArray(item)) {
+        flatten(item, depth - 1);
+      } else {
+        result.push(item);
+      }
     }
-
-    sourceIdx += 1;
   }
-
-  return targetIndex;
 }
 ```

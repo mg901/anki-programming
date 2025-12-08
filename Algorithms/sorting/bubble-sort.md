@@ -1,40 +1,40 @@
 ## [Bubble Sort](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1760737338357 -->
+<!-- notecardId: 1765135957192 -->
 
 ```js
 // Type: Stable
 
-// - Time: O(n^2)
+// - Time:
+//    Best: O(n)
+//    Average: O(n^2)
+
 // - Space: O(1)
-function bubbleSort(arr) {
+function quickSort(arr) {
   const n = arr.length;
   if (n < 2) return;
 
   for (let i = 0; i < n - 1; i += 1) {
-    for (let j = 0; j < n - i - 1; j += 1) {
-      if (arr[j] > arr[j + 1]) {
-        swap(arr, j, j + 1);
+    for (let j = 1; j < n - i; j += 1) {
+      if (arr[j - 1] > arr[j]) {
+        [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
       }
     }
   }
-}
-
-function swap(arr, i, j) {
-  const temp = arr[j];
-  arr[j] = arr[i];
-  arr[i] = temp;
 }
 ```
 
 ## [Bubble Sort 'optimized'](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1760737338362 -->
+<!-- notecardId: 1765041481032 -->
 
 ```js
 // Type: Stable
 
-// - Time: O(n^2)
+// - Time:
+//    Best: O(n)
+//    Average: O(n^2)
+
 // - Space: O(1)
 function bubbleSort(arr) {
   let n = arr.length;

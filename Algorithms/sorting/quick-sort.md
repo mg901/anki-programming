@@ -1,6 +1,6 @@
 ## [Quick Sort 'Naive Lomuto Partition'](https://www.greatfrontend.com/questions/algo/quick-sort)
 
-<!-- notecardId: 1764539480525 -->
+<!-- notecardId: 1765041774298 -->
 
 ```js
 // Explanation:
@@ -8,13 +8,13 @@
 
 // Type: Unstable
 
-// Average:
-//  Time: O(n log(n))
-//  Space: O(n)
+// - Time:
+//    Average: O(n log(n))
+//    Worst: O(n^2)
 
-// Worse:
-//   Time: O(n^2)
-//   Space: O(n)
+// Space:
+//    Average: O(n log n)
+//    Worst: O(n^2)
 export default function quickSort(arr) {
   const n = arr.length;
   if (n < 2) return arr;
@@ -37,7 +37,7 @@ export default function quickSort(arr) {
 
 ## [Quick Sort 'Randomized Lomuto Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
-<!-- notecardId: 1764696281857 -->
+<!-- notecardId: 1765041774299 -->
 
 ```js
 // Explanation:
@@ -47,13 +47,13 @@ export default function quickSort(arr) {
 
 // Technique: Stack Optimization (Tail Recursion Elimination)
 
-// Average
-//  Time: O(n log(n))
-//  Space: O(n log(n))
+// - Time:
+//    Average: O(n log(n))
+//    Worst: O(n^2)
 
-// Worse:
-//  Time: O(n^2)
-//  Space: O(n)
+// Space:
+//    Average: O(log n)
+//    Worst: O(n)
 function quickSort(arr) {
   const n = arr.length;
   if (n < 2) return;
@@ -120,7 +120,7 @@ function swap(arr, i, j) {
 
 ## [Quick Sort 'Randomized Haore Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
-<!-- notecardId: 1764696281861 -->
+<!-- notecardId: 1765041774300 -->
 
 ```js
 // Explanation:
@@ -128,13 +128,13 @@ function swap(arr, i, j) {
 
 // Type: Unstable
 
-// Average
-//  Time: O(n log(n))
-//  Space: O(n log(n))
+// - Time:
+//    Average: O(n log(n))
+//    Worst: O(n^2)
 
-// Worse:
-//  Time: O(n^2)
-//  Space: O(n)
+// Space:
+//    Average: O(log n)
+//    Worst: O(n)
 function quickSort(arr) {
   const n = arr.length;
   if (n < 2) return;

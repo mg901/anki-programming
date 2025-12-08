@@ -4,8 +4,11 @@
 
 ```js
 // Explanation:
-// - Algorithm: Kahn
-// - Neetcode: https://youtu.be/7J3GadLzydI?si=0xVzE1Iot1swC792
+// - Algorithm
+//    William Fiset: https://youtu.be/cIBFEhD77b4
+
+// - Problem:
+//    Neetcode: https://youtu.be/7J3GadLzydI?si=0xVzE1Iot1swC792
 
 // Complexity:
 // - Time: O(V + E)

@@ -1,72 +1,77 @@
 ## [Counting Sort 'stable'](https://leetcode.com/problems/sort-an-array/description/)
 
+<!-- notecardId: 1765200225881 -->
+
 ```js
+// Explanation:
+// - Quoc Dat Phung: https://youtu.be/IcIig2uY0YI
+
+// Type: Stable
+
 // - Time: O(n + k)
 //    where:
-//      k - count.length
-// - Space: O(k)
-function countingSort(arr) {
-  const n = arr.length;
-  if (n === 0) return arr;
+//      k - counter.length
 
-  const min = Math.min(...arr);
-  const max = Math.max(...arr);
+// - Space: O(n + k)
+function countingSort(ints) {
+  const n = ints.length;
+
+  const min = Math.min(...ints);
+  const max = Math.max(...ints);
+
+  if (min === max) return ints;
+
   const range = max - min + 1;
+  const counter = new Array(range).fill(0);
+  const sorted = new Array(n);
 
-  const count = new Array(range).fill(0);
-  const output = new Array(n);
-
-  for (let i = 0; i < n; i += 1) {
-    count[arr[i] - min] += 1;
+  for (const int of ints) {
+    counter[int - min] += 1;
   }
 
-  // 2) prefix sum
   for (let i = 1; i < range; i += 1) {
-    count[i] = count[i] + count[i - 1];
+    counter[i] += counter[i - 1];
   }
 
-  // 3) fill output (right to left) → this makes it stable
   for (let i = n - 1; i >= 0; i -= 1) {
-    const val = arr[i];
-    const idx = val - min;
-    const pos = count[idx] - 1;
-
-    output[pos] = val;
-    count[idx] -= 1;
+    const num = ints[i];
+    const idx = num - min;
+    counter[idx] -= 1;
+    sorted[counter[idx]] = num;
   }
 
-  // 4) copy back
-  for (let i = 0; i < n; i += 1) {
-    arr[i] = output[i];
-  }
-
-  return arr;
+  return sorted;
 }
 ```
 
 ## [Counting Sort 'unstable'](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1764255171552 -->
+<!-- notecardId: 1765200225885 -->
 
 ```js
+// Explanation:
+// - Quoc Dat Phung: https://youtu.be/4gK9bnlOq8o
+
 // Type: Unstable
 
 // - Time: O(n + k)
-// - Space: O(k)
 //   where:
-//     k = freq.length
-function sortArray(nums) {
-  const n = nums.length;
-  if (n < 2) return nums;
+//     k = counter.length
 
-  const min = Math.min(...nums);
-  const max = Math.max(...nums);
+// - Space: O(k)
+function countingSort(ints) {
+  const n = ints.length;
+
+  const min = Math.min(...ints);
+  const max = Math.max(...ints);
+
+  if (min === max) return ints;
 
   const range = max - min + 1;
   const counter = new Array(range).fill(0);
 
-  for (let i = 0; i < n; i += 1) {
-    counter[nums[i] - min] += 1;
+  for (const int of ints) {
+    counter[int - min] += 1;
   }
 
   const sorted = [];

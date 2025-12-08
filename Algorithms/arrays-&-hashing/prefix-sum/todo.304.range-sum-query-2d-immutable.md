@@ -1,10 +1,12 @@
 ## [304 Range Sum Query 2D - Immutable](https://leetcode.com/problems/range-sum-query-2d-immutable/description/)
 
-<!-- notecardId: 1764878675683 -->
-
 ```js
 // Explanation:
-// - Neetcode: https://youtu.be/KE8MQuwE2yA
+// - Algorithm:
+//    Profound Academy: https://youtu.be/WibxoqMSMCw
+
+// - Problem:
+//    Neetcode: https://youtu.be/KE8MQuwE2yA
 
 // - Time: O(1)
 // - Space: O(m * n)

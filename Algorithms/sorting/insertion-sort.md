@@ -1,6 +1,6 @@
 ## [Insertion Sort](https://bigfrontend.dev/problem/implement-Insertion-Sort)
 
-<!-- notecardId: 1760892519355 -->
+<!-- notecardId: 1765041500705 -->
 
 ```js
 // Explanation:
@@ -8,7 +8,10 @@
 
 // Type: Stable
 
-// - Time: O(n^2)
+// - Time:
+//    Best: O(n)
+//    Average: O(n^2)
+
 // - Space: O(1)
 function insertionSort(arr) {
   const n = arr.length;

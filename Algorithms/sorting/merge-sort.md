@@ -121,6 +121,8 @@ function merge(arr, temp, left, mid, right) {
 
 ## [Merge Sort 'bottom-up'](https://bigfrontend.dev/problem/implement-Merge-Sort)
 
+<!-- notecardId: 1765038255016 -->
+
 ```js
 // Explanation:
 // - CS50: https://youtu.be/Qs3l8_wd_34
