@@ -1,6 +1,6 @@
 ## [Patience Sort](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1765144220640 -->
+<!-- notecardId: 1765542191361 -->
 
 ```js
 // Explanation:
@@ -13,7 +13,7 @@
 //        k - number of piles
 
 // - Space: O(n)
-function patienceSort(nums) {
+function sortArray(nums) {
   const piles = buildPiles(nums);
 
   return mergePiles(piles);
@@ -30,37 +30,37 @@ function buildPiles(nums) {
       const mid = left + ((right - left) >> 1);
       const top = piles[mid].at(-1);
 
-      if (top >= num) {
+      if (num <= top) {
         right = mid;
       } else {
         left = mid + 1;
       }
     }
 
-    (piles[left] ??= []).push(num);
+    (piles[right] ??= []).push(num);
   }
 
   return piles;
 }
 
 function mergePiles(piles) {
+  const minpq = new MinPriorityQueue((item) => item.val);
   const sorted = [];
-  const heap = new MinPriorityQueue((item) => item.val);
 
   for (const pile of piles) {
-    heap.enqueue({
+    minpq.enqueue({
       val: pile.pop(),
       pile,
     });
   }
 
-  while (!heap.isEmpty()) {
-    const smallest = heap.dequeue();
+  while (!minpq.isEmpty()) {
+    const smallest = minpq.dequeue();
     sorted.push(smallest.val);
 
     if (smallest.pile.length) {
       smallest.val = smallest.pile.pop();
-      heap.enqueue(smallest);
+      minpq.enqueue(smallest);
     }
   }
 

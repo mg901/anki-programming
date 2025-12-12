@@ -1,6 +1,6 @@
-## [Bucket Sort 'integers'](https://leetcode.com/problems/sort-an-array/description)
+## [Bucket Sort](https://leetcode.com/problems/sort-an-array/description)
 
-<!-- notecardId: 1765139030393 -->
+<!-- notecardId: 1765285751298 -->
 
 ```js
 // Explanation:
@@ -24,10 +24,11 @@ function bucketSort(nums) {
   if (min === max) return nums;
 
   const buckets = Array.from({ length: n }, () => []);
-  const gap = Math.ceil((max - min) / (n - 1));
+  const range = max - min + 1e-9;
 
   for (const num of nums) {
-    const idx = Math.floor((num - min) / gap);
+    const normalized = (num - min) / range;
+    const idx = Math.min(Math.floor(normalized * n), n - 1);
     buckets[idx].push(num);
   }
 

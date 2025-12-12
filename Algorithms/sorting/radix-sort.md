@@ -1,6 +1,6 @@
 ## [Radix Sort](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1765204483342 -->
+<!-- notecardId: 1765274356283 -->
 
 ```js
 // Explanation:
@@ -16,22 +16,23 @@ function sortArray(nums) {
   const pos = nums.filter((num) => num >= 0);
   const neg = nums.filter((num) => num < 0).map((num) => -num);
 
-  const sortedPos = radixSort(pos);
-  const sortedNeg = radixSort(neg)
+  const posSorted = radixSort(pos);
+  const negSorted = radixSort(neg)
     .map((num) => -num)
     .reverse();
 
-  return [...sortedNeg, ...sortedPos];
+  return [...negSorted, ...posSorted];
 }
 
 function radixSort(nums) {
-  if (nums.length < 2) return nums;
+  const n = nums.length;
+  if (n < 2) return nums;
 
-  const max = Math.max(...nums);
   let place = 1;
+  const max = Math.max(...nums);
 
   while (Math.trunc(max / place) > 0) {
-    countingSortForDigits(nums, place);
+    nums = countingSortForDigits(nums, place);
     place *= 10;
   }
 
@@ -40,10 +41,10 @@ function radixSort(nums) {
 
 function countingSortForDigits(nums, place) {
   const n = nums.length;
-  if (n < 2) return;
+  if (n < 2) return nums;
 
   const RADIX = 10;
-  const temp = new Array(n);
+  const sorted = new Array(n);
   const counter = new Array(RADIX).fill(0);
 
   for (const num of nums) {
@@ -59,11 +60,9 @@ function countingSortForDigits(nums, place) {
     const num = nums[i];
     const digit = Math.trunc(num / place) % RADIX;
     counter[digit] -= 1;
-    temp[counter[digit]] = num;
+    sorted[counter[digit]] = num;
   }
 
-  for (let i = 0; i < n; i += 1) {
-    nums[i] = temp[i];
-  }
+  return sorted;
 }
 ```

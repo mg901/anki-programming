@@ -121,11 +121,12 @@ function merge(arr, temp, left, mid, right) {
 
 ## [Merge Sort 'bottom-up'](https://bigfrontend.dev/problem/implement-Merge-Sort)
 
-<!-- notecardId: 1765038255016 -->
+<!-- notecardId: 1765537945158 -->
 
 ```js
 // Explanation:
 // - CS50: https://youtu.be/Qs3l8_wd_34
+// - Mary Elaine Califf: https://youtu.be/IN_ZOU-LK08 (Bottom-up)
 
 // Type: Stable
 
@@ -136,21 +137,18 @@ function mergeSort(arr) {
   if (n < 2) return;
 
   const temp = new Array(n);
-  let size = 1;
 
-  while (size < n) {
+  for (let step = 1; step < n; step *= 2) {
     let left = 0;
 
     while (left < n) {
-      const mid = Math.min(left + size - 1, n - 1);
-      const right = Math.min(left + size * 2 - 1, n - 1);
+      const mid = Math.min(left + step - 1, n - 1);
+      const right = Math.min(left + step * 2 - 1, n - 1);
 
       merge(arr, temp, left, mid, right);
 
       left = right + 1;
     }
-
-    size *= 2;
   }
 }
 
