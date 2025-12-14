@@ -1,6 +1,6 @@
 ## [Bubble Sort](https://bigfrontend.dev/problem/implement-Bubble-Sort)
 
-<!-- notecardId: 1765135957192 -->
+<!-- notecardId: 1765706358825 -->
 
 ```js
 // Type: Stable
@@ -10,16 +10,21 @@
 //    Average: O(n^2)
 
 // - Space: O(1)
-function quickSort(arr) {
+function bubbleSort(arr) {
   const n = arr.length;
   if (n < 2) return;
 
   for (let i = 0; i < n - 1; i += 1) {
+    let swapped = false;
+
     for (let j = 1; j < n - i; j += 1) {
       if (arr[j - 1] > arr[j]) {
         [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
+        swapped = true;
       }
     }
+
+    if (!swapped) break;
   }
 }
 ```

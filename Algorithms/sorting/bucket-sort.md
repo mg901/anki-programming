@@ -1,6 +1,6 @@
 ## [Bucket Sort](https://leetcode.com/problems/sort-an-array/description)
 
-<!-- notecardId: 1765285751298 -->
+<!-- notecardId: 1765714333996 -->
 
 ```js
 // Explanation:
@@ -18,16 +18,21 @@ function bucketSort(nums) {
   const n = nums.length;
   if (n < 2) return nums;
 
-  const min = Math.min(...nums);
-  const max = Math.max(...nums);
+  let min = nums[0];
+  let max = nums[0];
+
+  for (const num of nums) {
+    min = Math.min(min, num);
+    max = Math.max(max, num);
+  }
 
   if (min === max) return nums;
 
+  const range = max - min;
   const buckets = Array.from({ length: n }, () => []);
-  const range = max - min + 1e-9;
 
   for (const num of nums) {
-    const normalized = (num - min) / range;
+    const normalized = (num - min) / range; // to [0, 1)
     const idx = Math.min(Math.floor(normalized * n), n - 1);
     buckets[idx].push(num);
   }

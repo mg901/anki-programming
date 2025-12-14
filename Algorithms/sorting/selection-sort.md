@@ -1,6 +1,6 @@
 ## [Selection Sort](https://bigfrontend.dev/problem/implement-Selection-Sort)
 
-<!-- notecardId: 1760896167243 -->
+<!-- notecardId: 1765708006882 -->
 
 ```js
 // Explanation:
@@ -12,7 +12,7 @@
 // - Space: O(1)
 function selectionSort(arr) {
   const n = arr.length;
-  if (n < 2) return;
+  if (n < 2) return arr;
 
   let minIndex;
 
@@ -26,14 +26,8 @@ function selectionSort(arr) {
     }
 
     if (minIndex !== i) {
-      swap(arr, i, minIndex);
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
     }
   }
-}
-
-function swap(arr, i, j) {
-  const temp = arr[j];
-  arr[j] = arr[i];
-  arr[i] = temp;
 }
 ```
