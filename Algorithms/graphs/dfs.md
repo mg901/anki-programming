@@ -1,6 +1,6 @@
 ## [Depth-first Search 'recursion'](https://www.greatfrontend.com/questions/algo/depth-first-search)
 
-<!-- notecardId: 1755602976034 -->
+<!-- notecardId: 1765740875941 -->
 
 ```js
 // Explanation:
@@ -22,14 +22,14 @@ export default function depthFirstSearch(graph, source) {
 
   return result;
 
-  function traverse(vertex) {
-    if (visited.has(vertex)) return;
+  function traverse(u) {
+    if (visited.has(u)) return;
 
-    visited.add(vertex);
-    result.push(vertex);
+    visited.add(u);
+    result.push(u);
 
-    for (const neighbor of graph[vertex] ?? []) {
-      traverse(neighbor);
+    for (const v of graph[u] ?? []) {
+      traverse(v);
     }
   }
 }
@@ -37,7 +37,7 @@ export default function depthFirstSearch(graph, source) {
 
 ## [Depth-first Search 'imperative'](https://www.greatfrontend.com/questions/algo/depth-first-search)
 
-<!-- notecardId: 1755602976038 -->
+<!-- notecardId: 1765740875944 -->
 
 ```js
 // Complexity:
@@ -54,15 +54,16 @@ export default function depthFirstSearch(graph, source) {
   const visited = new Set();
 
   while (stack.length) {
-    const vertex = stack.pop();
-    if (visited.has(vertex)) continue;
+    const u = stack.pop();
+    if (visited.has(u)) continue;
 
-    result.push(vertex);
-    visited.add(vertex);
+    result.push(u);
+    visited.add(u);
 
-    const neighbors = graph[vertex] ?? [];
+    const neighbors = graph[u] ?? [];
+    const n = neighbors.length;
 
-    for (let i = neighbors.length - 1; i >= 0; i -= 1) {
+    for (let i = n - 1; i >= 0; i -= 1) {
       const neighbor = neighbors[i];
 
       if (!visited.has(neighbor)) {

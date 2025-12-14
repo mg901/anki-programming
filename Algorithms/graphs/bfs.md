@@ -1,6 +1,6 @@
 ## [Breadth-first Search](https://www.greatfrontend.com/questions/algo/breadth-first-search?format=algo)
 
-<!-- notecardId: 1755602999807 -->
+<!-- notecardId: 1765740721670 -->
 
 ```js
 // Explanation:
@@ -21,15 +21,15 @@ export default function breadthFirstSearch(graph, source) {
   const result = [];
 
   while (queue.length) {
-    const vertex = queue.shift();
+    const u = queue.shift();
 
-    if (visited.has(vertex)) continue;
-    visited.add(vertex);
-    result.push(vertex);
+    if (visited.has(u)) continue;
+    visited.add(u);
+    result.push(u);
 
-    for (const neighbor of graph[vertex] ?? []) {
-      if (!visited.has(neighbor)) {
-        queue.push(neighbor);
+    for (const v of graph[u] ?? []) {
+      if (!visited.has(v)) {
+        queue.push(v);
       }
     }
   }
