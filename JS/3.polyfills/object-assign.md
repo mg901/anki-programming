@@ -22,7 +22,7 @@ function objectAssign(target, ...sources) {
     for (const key of keys) {
       const desc = Object.getOwnPropertyDescriptor(to, key);
 
-      if (desc === undefined || desc.writable === false) {
+      if (desc === undefined || desc.writable === true) {
         to[key] = from[key];
       } else {
         throw new TypeError(`Cannot assign to read-only property '${key}'`);

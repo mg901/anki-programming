@@ -4,8 +4,12 @@
 function isEqual(a, b) {
   const seenPairs = new WeakMap();
 
+  return traverse(a, b);
+
   function traverse(x, y) {
-    if (x === y || (Number.isNaN(x) && Number.isNaN(y))) return true;
+    if (x === y || (Number.isNaN(x) && Number.isNaN(y))) {
+      return true;
+    }
 
     if (
       typeof x !== 'object' ||
@@ -16,7 +20,10 @@ function isEqual(a, b) {
       return false;
     }
 
-    if (seenPairs.has(x) && seenPairs.get(x) === y) return true;
+    if (seenPairs.has(x) && seenPairs.get(x) === y) {
+      return true;
+    }
+
     seenPairs.set(x, y);
 
     if (Array.isArray(x)) {
@@ -31,6 +38,7 @@ function isEqual(a, b) {
 
     const keysX = Object.keys(x);
     const keysY = Object.keys(y);
+
     if (keysX.length !== keysY.length) return false;
 
     for (const key of keysX) {
@@ -41,7 +49,5 @@ function isEqual(a, b) {
 
     return true;
   }
-
-  return traverse(a, b);
 }
 ```
