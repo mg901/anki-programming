@@ -1,7 +1,5 @@
 ## Uncurry
 
-<!-- notecardId: 1739454894540 -->
-
 ```js
 function uncurry(func) {
   return function (...args) {
@@ -10,7 +8,7 @@ function uncurry(func) {
     let result = func;
 
     for (const arg of args) {
-      if (typeof result !== "function") break;
+      if (typeof result !== 'function') break;
 
       result = result(arg);
     }

@@ -1,7 +1,5 @@
 ## [Squash Object](https://www.greatfrontend.com/questions/javascript/squash-object?practice=practice&tab=coding)
 
-<!-- notecardId: 1739454882838 -->
-
 ```js
 function squashObject(obj) {
   const squashed = {};
@@ -16,8 +14,8 @@ function squashObject(obj) {
       const value = o[key];
       const fullPath = [...path, key];
 
-      if (value === null || typeof value !== "object") {
-        output[fullPath.filter(Boolean).join(".")] = value;
+      if (value === null || typeof value !== 'object') {
+        output[fullPath.filter(Boolean).join('.')] = value;
       } else {
         traverse(value, fullPath, output);
       }

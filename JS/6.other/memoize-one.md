@@ -1,7 +1,5 @@
 ## [Memoize One](https://bigfrontend.dev/problem/implement-memoizeOne)
 
-<!-- notecardId: 1739454875010 -->
-
 ```js
 function memoizeOne(func, isEqual = areArgsEqual) {
   let lastThis;

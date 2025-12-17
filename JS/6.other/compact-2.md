@@ -1,10 +1,8 @@
 ## [Compact 2](https://www.greatfrontend.com/questions/javascript/compact-ii?language=js)
 
-<!-- notecardId: 1739454815939 -->
-
 ```js
 function compact(data) {
-  if (!data || typeof data !== "object") return data;
+  if (!data || typeof data !== 'object') return data;
 
   if (Array.isArray(data)) {
     const newArray = [];

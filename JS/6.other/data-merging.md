@@ -1,7 +1,5 @@
 ## [Data merging](https://www.greatfrontend.com/interviews/study/gfe75/questions/javascript/data-merging)
 
-<!-- notecardId: 1763485051852 -->
-
 ```js
 export default function mergeData(sessions) {
   const userToData = new Map();

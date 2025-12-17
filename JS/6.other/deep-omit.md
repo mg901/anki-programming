@@ -1,7 +1,5 @@
 ## [Deep Omit](https://www.greatfrontend.com/questions/javascript/deep-omit?language=js)
 
-<!-- notecardId: 1739478148185 -->
-
 ```js
 function deepOmit(value, keys) {
   const seen = new WeakMap();
@@ -9,7 +7,7 @@ function deepOmit(value, keys) {
   return traverse(value, keys);
 
   function traverse(data, omitKeys) {
-    if (!keys.length || (!Array.isArray(data) && !isPlainObject(data))) {
+    if (!keys.length || (!Array.isArray(data) && !isObjectLike(data))) {
       return data;
     }
 
@@ -32,7 +30,7 @@ function deepOmit(value, keys) {
   }
 }
 
-function isPlainObject(it) {
-  return Object.prototype.toString.call(it) === "[object Object]";
+function isObjectLike(it) {
+  return Object.prototype.toString.call(it) === '[object Object]';
 }
 ```

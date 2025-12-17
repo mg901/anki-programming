@@ -1,15 +1,13 @@
 ## [HTML Serializer](https://www.greatfrontend.com/interviews/study/dom-manipulation/questions/javascript/html-serializer)
 
-<!-- notecardId: 1739454859213 -->
-
 ```js
-function serializeHTML(element, indent = "\t") {
-  const NEW_LINE = "\n";
+function serializeHTML(element, indent = '\t') {
+  const NEW_LINE = '\n';
 
   return traverse(element);
 
   function traverse(item, depth = 0) {
-    if (typeof item === "string") {
+    if (typeof item === 'string') {
       return `${indent.repeat(depth)}${item}`;
     }
 

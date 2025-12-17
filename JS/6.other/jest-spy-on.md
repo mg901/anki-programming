@@ -1,14 +1,12 @@
 ## [Jest spyOn](https://bigfrontend.dev/problem/implement-spyOn)
 
-<!-- notecardId: 1739454867582 -->
-
 ```js
 // HOF
 function spyOn(o, methodName) {
   const calls = [];
 
-  if (!Object.hasOwn(o, methodName) && typeof o[methodName] !== "function") {
-    throw new Error("");
+  if (!Object.hasOwn(o, methodName) && typeof o[methodName] !== 'function') {
+    throw new Error('');
   }
 
   const originalMethod = o[methodName];
@@ -25,8 +23,8 @@ function spyOn(o, methodName) {
 function spyOn(o, methodName) {
   const calls = [];
 
-  if (!Object.hasOwn(o, methodName) && typeof o[methodName] !== "function") {
-    throw new Error("");
+  if (!Object.hasOwn(o, methodName) && typeof o[methodName] !== 'function') {
+    throw new Error('');
   }
 
   const proxy = new Proxy(o[methodName], {

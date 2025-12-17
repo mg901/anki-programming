@@ -1,7 +1,5 @@
 ## [Classnames](https://www.greatfrontend.com/questions/javascript/classnames?language=js)
 
-<!-- notecardId: 1739454812066 -->
-
 ```js
 function classNames(...args) {
   const classes = [];
@@ -13,7 +11,7 @@ function classNames(...args) {
 
     const type = typeof arg;
 
-    if (type === "string" || type === "number") {
+    if (type === 'string' || type === 'number') {
       classes.push(arg);
       continue;
     }
@@ -29,7 +27,7 @@ function classNames(...args) {
       continue;
     }
 
-    if (type === "object") {
+    if (type === 'object') {
       if (arg.toString === Object.prototype.toString) {
         for (const key in arg) {
           if (!Object.hasOwn(arg, key)) continue;
@@ -44,6 +42,6 @@ function classNames(...args) {
     }
   }
 
-  return classes.join(" ");
+  return classes.join(' ');
 }
 ```

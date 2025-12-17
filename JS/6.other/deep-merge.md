@@ -1,14 +1,12 @@
 ## [Deep Merge](https://www.greatfrontend.com/questions/javascript/deep-merge?language=js)
 
-<!-- notecardId: 1739880566356 -->
-
 ```js
 function deepMerge(a, b) {
   if (Array.isArray(a) && Array.isArray(b)) {
     return [...a, ...b];
   }
 
-  if (isPlainObject(a) && isPlainObject(b)) {
+  if (isObjectLike(a) && isObjectLike(b)) {
     const target = { ...a };
 
     for (const bKey in b) {
@@ -27,7 +25,7 @@ function deepMerge(a, b) {
   return b;
 }
 
-function isPlainObject(it) {
-  return Object.prototype.toString.call(it) === "[object Object]";
+function isObjectLike(it) {
+  return Object.prototype.toString.call(it) === '[object Object]';
 }
 ```

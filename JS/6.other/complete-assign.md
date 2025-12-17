@@ -1,12 +1,10 @@
 ## [Complete Assign](https://bigfrontend.dev/problem/implement-completeAssign)
 
-<!-- notecardId: 1739454820764 -->
-
 ```js
 function completeAssign(target, ...sources) {
   let to = target;
   if (to == null) {
-    throw new TypeError("Cannot convert undefined or null to object");
+    throw new TypeError('Cannot convert undefined or null to object');
   }
 
   to = Object(to);

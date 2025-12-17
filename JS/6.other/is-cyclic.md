@@ -1,7 +1,5 @@
 ## Is Cyclic
 
-<!-- notecardId: 1739454863461 -->
-
 ```js
 function isCyclic(value) {
   const seen = new WeakSet();
@@ -9,7 +7,7 @@ function isCyclic(value) {
   return traverse(value);
 
   function traverse(data) {
-    if (data && typeof data === "object") {
+    if (data && typeof data === 'object') {
       if (seen.has(data)) {
         return true;
       }
