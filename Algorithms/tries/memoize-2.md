@@ -1,51 +1,74 @@
 ## [Memoize 2](https://www.greatfrontend.com/questions/javascript/memoize-ii)
 
-<!-- notecardId: 1765726956290 -->
-
 ```js
 class TrieNode {
-  children = new Map();
+  #children = new Map();
 
-  hasValue = false;
+  #hasValue = false;
 
-  value = undefined;
-}
+  #value;
 
-class Cache {
-  #root = new TrieNode();
-
-  set(args, value) {
-    let node = this.#root;
-
-    for (const char of args) {
-      if (!node.children.has(char)) {
-        node.children.set(char, new TrieNode());
-      }
-
-      node = node.children.get(char);
-    }
-
-    node.hasValue = true;
-    node.value = value;
+  get hasValue() {
+    return this.#hasValue;
   }
 
-  get(args) {
+  set value(value) {
+    this.#value = value;
+    this.#hasValue = true;
+  }
+
+  get value() {
+    return this.#value;
+  }
+
+  getChild(key) {
+    return this.#children.get(key);
+  }
+
+  ensureChild(key) {
+    let child = this.#children.get(key);
+
+    if (!child) {
+      child = new TrieNode();
+      this.#children.set(key, child);
+    }
+
+    return child;
+  }
+}
+
+class TrieCache {
+  #root = new TrieNode();
+
+  getNode(args) {
     let node = this.#root;
 
-    for (const char of args) {
-      node = node.children.get(char) ?? new TrieNode();
+    for (const arg of args) {
+      node = node.getChild(arg);
+
+      if (!node) return null;
     }
 
     return node;
   }
+
+  set(args, value) {
+    let node = this.#root;
+
+    for (const arg of args) {
+      node = node.ensureChild(arg);
+    }
+
+    node.value = value;
+  }
 }
 
 export default function memoize(func) {
-  const cache = new Cache();
+  const cache = new TrieCache();
 
   return function (...args) {
-    const node = cache.get(args);
-    if (node.hasValue) return node.value;
+    const node = cache.getNode(args);
+    if (node?.hasValue) return node.value;
 
     const value = func.apply(this, args);
     cache.set(args, value);
