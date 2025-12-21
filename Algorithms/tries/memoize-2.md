@@ -1,5 +1,7 @@
 ## [Memoize 2](https://www.greatfrontend.com/questions/javascript/memoize-ii)
 
+<!-- notecardId: 1766334522236 -->
+
 ```js
 class TrieNode {
   #children = new Map();
@@ -40,16 +42,18 @@ class TrieNode {
 class TrieCache {
   #root = new TrieNode();
 
-  getNode(args) {
+  get(args) {
     let node = this.#root;
+    const NOT_FOUND = [false, null];
 
     for (const arg of args) {
-      node = node.getChild(arg);
+      const child = node.getChild(arg);
+      if (!child) return NOT_FOUND;
 
-      if (!node) return null;
+      node = child;
     }
 
-    return node;
+    return node.hasValue ? [true, node.value] : NOT_FOUND;
   }
 
   set(args, value) {
@@ -61,19 +65,23 @@ class TrieCache {
 
     node.value = value;
   }
+
+  clear() {
+    this.#root = new TrieNode();
+  }
 }
 
 export default function memoize(func) {
   const cache = new TrieCache();
 
   return function (...args) {
-    const node = cache.getNode(args);
-    if (node?.hasValue) return node.value;
+    const [found, value] = cache.get(args);
+    if (found) return value;
 
-    const value = func.apply(this, args);
-    cache.set(args, value);
+    const result = func.apply(this, args);
+    cache.set(args, result);
 
-    return value;
+    return result;
   };
 }
 ```
