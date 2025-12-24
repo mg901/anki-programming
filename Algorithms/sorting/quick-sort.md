@@ -31,7 +31,7 @@ export default function quickSort(arr) {
     }
   }
 
-  return quickSort(left).concat(pivot, ...quickSort(right));
+  return quickSort(left).concat(pivot, quickSort(right));
 }
 ```
 
