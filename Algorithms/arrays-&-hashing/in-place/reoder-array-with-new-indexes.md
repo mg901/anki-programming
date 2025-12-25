@@ -22,6 +22,8 @@ function sort(items, newOrder) {
 }
 
 function swap(arr, i, j) {
+  if (i === j) return;
+
   const temp = arr[j];
   arr[j] = arr[i];
   arr[i] = temp;

@@ -96,22 +96,20 @@ function lomutoPartition(arr, left, right) {
 
   for (let i = left; i < right; i += 1) {
     if (arr[i] <= pivot) {
-      if (i !== wall) {
-        swap(arr, i, wall);
-      }
+      swap(arr, i, wall);
 
       wall += 1;
     }
   }
 
-  if (wall !== right) {
-    swap(arr, right, wall);
-  }
+  swap(arr, right, wall);
 
   return wall;
 }
 
 function swap(arr, i, j) {
+  if (i === j) return;
+
   const temp = arr[j];
   arr[j] = arr[i];
   arr[i] = temp;
@@ -190,6 +188,8 @@ function hoarePartition(arr, left, right) {
 }
 
 function swap(arr, i, j) {
+  if (i === j) return;
+
   const temp = arr[j];
   arr[j] = arr[i];
   arr[i] = temp;
