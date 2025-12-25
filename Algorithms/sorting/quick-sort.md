@@ -37,7 +37,7 @@ export default function quickSort(arr) {
 
 ## [Quick Sort 'Randomized Lomuto Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
-<!-- notecardId: 1765897734369 -->
+<!-- notecardId: 1766694058340 -->
 
 ```js
 // Explanation:
@@ -97,7 +97,6 @@ function lomutoPartition(arr, left, right) {
   for (let i = left; i < right; i += 1) {
     if (arr[i] <= pivot) {
       swap(arr, i, wall);
-
       wall += 1;
     }
   }

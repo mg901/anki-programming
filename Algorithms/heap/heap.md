@@ -1,12 +1,12 @@
 ## [Max Heap](https://www.greatfrontend.com/questions/algo/heap)
 
-<!-- notecardId: 1766669429664 -->
+<!-- notecardId: 1766683224218 -->
 
 ```js
 // Explanation:
 // - Abdul Bari: https://youtu.be/HqPJF2L5h9U
 
-class Heap {
+export default class Heap {
   #items;
 
   constructor(array = []) {
@@ -14,11 +14,14 @@ class Heap {
     this.heapify(array);
   }
 
+  get size() {
+    return this.#items.length;
+  }
+
   // - Time: O(n)
   heapify(array) {
     this.#items = array;
-    const size = this.#items.length;
-    const lastParentIdx = Math.floor(size / 2) - 1;
+    const lastParentIdx = Math.floor(this.size / 2) - 1;
 
     for (let i = lastParentIdx; i >= 0; i -= 1) {
       this.#heapifyDown(i);
@@ -27,22 +30,20 @@ class Heap {
 
   // - Time: O(log(n))
   #heapifyDown(index) {
-    const size = this.#items.length;
-
     while (true) {
       let largestIdx = index;
       let leftChildIdx = 2 * index + 1;
       let rightChildIdx = 2 * index + 2;
 
       if (
-        leftChildIdx < size &&
+        leftChildIdx < this.size &&
         this.#items[leftChildIdx] > this.#items[largestIdx]
       ) {
         largestIdx = leftChildIdx;
       }
 
       if (
-        rightChildIdx < size &&
+        rightChildIdx < this.size &&
         this.#items[rightChildIdx] > this.#items[largestIdx]
       ) {
         largestIdx = rightChildIdx;
@@ -58,7 +59,7 @@ class Heap {
   // - Time: O(log(n))
   insert(value) {
     this.#items.push(value);
-    this.#heapifyUp(this.#items.length - 1);
+    this.#heapifyUp(this.size - 1);
   }
 
   // - Time: O(log(n))
@@ -77,11 +78,10 @@ class Heap {
 
   // - Time: O(log(n))
   delete() {
-    const size = this.#items.length;
     const items = this.#items;
 
-    if (size === 0) return undefined;
-    if (size === 1) return items.pop();
+    if (this.size === 0) return undefined;
+    if (this.size === 1) return items.pop();
 
     const max = items[0];
     items[0] = items.pop();
