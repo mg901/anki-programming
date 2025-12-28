@@ -80,13 +80,13 @@ function quickSort(arr) {
 }
 
 function randomizedPartition(arr, left, right) {
-  const randomIdx = randomInclusive(left, right);
+  const randomIdx = randomInt(left, right);
   swap(arr, right, randomIdx);
 
   return lomutoPartition(arr, left, right);
 }
 
-function randomInclusive(min, max) {
+function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -158,13 +158,13 @@ function quickSort(arr) {
 }
 
 function randomizedPartition(arr, left, right) {
-  const randomIdx = randomInclusive(left, right);
+  const randomIdx = randomInt(left, right);
   swap(arr, randomIdx, left);
 
   return hoarePartition(arr, left, right);
 }
 
-function randomInclusive(min, max) {
+function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 

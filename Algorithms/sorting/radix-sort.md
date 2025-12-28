@@ -59,8 +59,8 @@ function countingSortForDigits(nums, place) {
   for (let i = n - 1; i >= 0; i -= 1) {
     const num = nums[i];
     const digit = Math.trunc(num / place) % RADIX;
-    counter[digit] -= 1;
-    sorted[counter[digit]] = num;
+    const pos = (counter[digit] -= 1);
+    sorted[pos] = num;
   }
 
   return sorted;
