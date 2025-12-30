@@ -9,14 +9,14 @@
 function multiply(num1, num2) {
   if (num1 === '0' || num2 === '0') return '0';
 
-  const m = num1.length;
-  const n = num2.length;
+  const n = num1.length;
+  const m = num2.length;
   const RADIX = 10;
   const codeZero = '0'.codePointAt(0);
-  const product = new Uint32Array(m + n);
+  const product = new Uint32Array(n + m);
 
-  for (let i = m - 1; i >= 0; i -= 1) {
-    for (let j = n - 1; j >= 0; j -= 1) {
+  for (let i = n - 1; i >= 0; i -= 1) {
+    for (let j = m - 1; j >= 0; j -= 1) {
       const digit1 = num1.codePointAt(i) - codeZero;
       const digit2 = num2.codePointAt(j) - codeZero;
 

@@ -6,14 +6,14 @@
 // - Time: O(n + m)
 // - Space: O(1)
 function intersect(arr1, arr2) {
-  const m = arr1.length;
-  const n = arr2.length;
+  const a = arr1.length;
+  const m = arr2.length;
 
   let i = 0;
   let j = 0;
   const result = [];
 
-  while (i < m && j < n) {
+  while (i < a && j < m) {
     if (arr1[i] === arr2[j]) {
       result.push(arr1[i]);
 
