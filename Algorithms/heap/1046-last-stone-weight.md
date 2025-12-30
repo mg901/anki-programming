@@ -1,6 +1,13 @@
 ## [1046 Last Stone Weight](https://leetcode.com/problems/last-stone-weight/description/)
 
+<!-- notecardId: 1767104727367 -->
+
 ```js
+// Explanation:
+// - Neetcode: https://youtu.be/B-QCq79-Vfw
+
+// - Time: O(n log(n))
+// - Space: O(n)
 function lastStoneWeight(stones) {
   const maxpq = new MaxPriorityQueue();
 
