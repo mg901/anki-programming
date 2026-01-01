@@ -117,7 +117,7 @@ function swap(arr, i, j) {
 
 ## [Quick Sort 'Randomized Haore Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
 
-<!-- notecardId: 1765041774300 -->
+<!-- notecardId: 1767139185993 -->
 
 ```js
 // Explanation:
@@ -168,17 +168,23 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// [3, 4, 9, 1, 7, 0, 5, 2, 6, 8]
+
+// boundary
+// 1) 7
+// 2)
+// 3)
 function hoarePartition(arr, left, right) {
-  const pivot = arr[left];
+  const boundary = arr[left];
   let i = left - 1;
   let j = right + 1;
 
   while (true) {
     do i += 1;
-    while (arr[i] < pivot);
+    while (arr[i] < boundary);
 
     do j -= 1;
-    while (arr[j] > pivot);
+    while (arr[j] > boundary);
 
     if (i >= j) return j;
 
