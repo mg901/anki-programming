@@ -9,21 +9,21 @@
 // - Time: O(n log(n))
 // - Space: O(n)
 function lastStoneWeight(stones) {
-  const maxpq = new MaxPriorityQueue();
+  const maxHeap = new MaxHeap();
 
   stones.forEach((stone) => {
-    maxpq.enqueue(stone);
+    maxHeap.push(stone);
   });
 
-  while (maxpq.size() > 1) {
-    const y = maxpq.dequeue();
-    const x = maxpq.dequeue();
+  while (maxHeap.size() > 1) {
+    const y = maxHeap.pop();
+    const x = maxHeap.pop();
 
     if (x !== y) {
-      maxpq.enqueue(y - x);
+      maxHeap.push(y - x);
     }
   }
 
-  return maxpq.front() ?? 0;
+  return maxHeap.top() ?? 0;
 }
 ```

@@ -32,7 +32,7 @@ class Twitter {
     const followeeIds = this.#followeeIds.get(userId) ?? new Set();
     followeeIds.add(userId);
 
-    const maxpq = new MaxPriorityQueue((tweet) => tweet.count);
+    const maxHeap = new MaxHeap((tweet) => tweet.count);
 
     for (const followeeId of followeeIds) {
       if (!this.#tweets.has(followeeId)) continue;
@@ -40,7 +40,7 @@ class Twitter {
       const tweetsById = this.#tweets.get(followeeId);
       const lastIndex = tweetsById.length - 1;
 
-      maxpq.enqueue({
+      maxHeap.push({
         ...tweetsById[lastIndex],
         followeeId,
         index: lastIndex - 1,
@@ -49,12 +49,12 @@ class Twitter {
 
     const feed = [];
 
-    while (!maxpq.isEmpty() && feed.length < this.#feedLimit) {
-      const { tweetId, followeeId, index } = maxpq.dequeue();
+    while (!maxHeap.isEmpty() && feed.length < this.#feedLimit) {
+      const { tweetId, followeeId, index } = maxHeap.pop();
       feed.push(tweetId);
 
       if (index >= 0) {
-        maxpq.enqueue({
+        maxHeap.push({
           ...this.#tweets.get(followeeId)[index],
           followeeId,
           index: index - 1,
