@@ -1,6 +1,6 @@
 ## [Patience Sort](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1765542191361 -->
+<!-- notecardId: 1767542252773 -->
 
 ```js
 // Explanation:
@@ -14,11 +14,20 @@
 
 // - Space: O(n)
 function sortArray(nums) {
+  const n = nums.length;
+  if (n < 2) return nums;
+
   const piles = buildPiles(nums);
 
   return mergePiles(piles);
 }
 
+// Source: [3,7,5,6,4,2]
+
+// Sorted:
+//  3  7  6
+//  2  5
+//     4
 function buildPiles(nums) {
   const piles = [];
 
@@ -37,33 +46,34 @@ function buildPiles(nums) {
       }
     }
 
-    (piles[right] ??= []).push(num);
+    (piles[left] ??= []).push(num);
   }
 
   return piles;
 }
 
 function mergePiles(piles) {
-  const minpq = new MinPriorityQueue((item) => item.val);
-  const sorted = [];
+  const minHeap = new MinHeap((item) => item.val);
 
   for (const pile of piles) {
-    minpq.enqueue({
+    minHeap.push({
       val: pile.pop(),
       pile,
     });
   }
 
-  while (!minpq.isEmpty()) {
-    const smallest = minpq.dequeue();
-    sorted.push(smallest.val);
+  const merged = [];
+
+  while (!minHeap.isEmpty()) {
+    const smallest = minHeap.pop();
+    merged.push(smallest.val);
 
     if (smallest.pile.length) {
       smallest.val = smallest.pile.pop();
-      minpq.enqueue(smallest);
+      minHeap.push(smallest);
     }
   }
 
-  return sorted;
+  return merged;
 }
 ```
