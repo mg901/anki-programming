@@ -112,7 +112,10 @@ export class BinaryTree {
   }
 
   isComplete() {
-    const queue = [this.root];
+    const root = this.root;
+    if (!root) return true;
+
+    const queue = [root];
     let seeNull = false;
 
     while (queue.length) {
