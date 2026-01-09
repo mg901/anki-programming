@@ -1,6 +1,6 @@
 ## [Heap Sort](https://leetcode.com/problems/sort-an-array/description)
 
-<!-- notecardId: 1766682308510 -->
+<!-- notecardId: 1767977502116 -->
 
 ```js
 // Explanation:
@@ -32,23 +32,23 @@ function buildMaxHeap(nums) {
   }
 }
 
-function heapifyDown(nums, index, size) {
+function heapifyDown(heap, index, size) {
   while (true) {
     let largestIdx = index;
     let leftChildIdx = index * 2 + 1;
     let rightChildIdx = index * 2 + 2;
 
-    if (leftChildIdx < size && nums[leftChildIdx] > nums[largestIdx]) {
+    if (leftChildIdx < size && heap[leftChildIdx] > heap[largestIdx]) {
       largestIdx = leftChildIdx;
     }
 
-    if (rightChildIdx < size && nums[rightChildIdx] > nums[largestIdx]) {
+    if (rightChildIdx < size && heap[rightChildIdx] > heap[largestIdx]) {
       largestIdx = rightChildIdx;
     }
 
     if (largestIdx === index) break;
 
-    swap(nums, index, largestIdx);
+    swap(heap, index, largestIdx);
     index = largestIdx;
   }
 }

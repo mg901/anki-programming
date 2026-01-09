@@ -1,8 +1,10 @@
-## [Reorder array with new indexes 'cyclic-sort'](https://bigfrontend.dev/problem/reorder-array-with-new-indexes)
+## [Reorder array with new indexes](https://bigfrontend.dev/problem/reorder-array-with-new-indexes)
 
-<!-- notecardId: 1764088504774 -->
+<!-- notecardId: 1767984303652 -->
 
 ```js
+// - Technique: Cyclic Sort
+
 // - Time: O(n)
 // - Space: O(1)
 function sort(items, newOrder) {
