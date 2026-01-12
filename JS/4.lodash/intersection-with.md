@@ -3,20 +3,23 @@
 ```js
 // Algorithm: Vertical Scanning
 
-// - Time: O(m * k * n)
+// - Time: O(n * k * m)
 //    where:
-//      - m = head.length
+//      - n = head.length
 //      - k = number of other arrays (tail.length)
-//      - n = average size of arrays in tail
+//      - m = average size of arrays in tail
 
 // - Space: O(1)
 function intersectionWith(comparator, ...arrays) {
-  if (arrays.length === 0) return [];
+  const k = arrays.length;
+
+  if (k === 0) return [];
+  if (k === 1) return [...arrays[0]];
 
   const [head, ...tail] = arrays;
 
-  return head.filter((item) =>
-    tail.every((array) => array.some((value) => comparator(item, value))),
+  return head.filter((val) =>
+    tail.every((array) => array.some((otherVal) => comparator(val, otherVal))),
   );
 }
 ```

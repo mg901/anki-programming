@@ -11,12 +11,7 @@ function isEqual(a, b) {
       return true;
     }
 
-    if (
-      typeof x !== 'object' ||
-      x == null ||
-      typeof y !== 'object' ||
-      y == null
-    ) {
+    if (!isObject(x) || isObject(y)) {
       return false;
     }
 
@@ -49,5 +44,9 @@ function isEqual(a, b) {
 
     return true;
   }
+}
+
+function isObject(it) {
+  return it !== null && typeof it === 'object';
 }
 ```

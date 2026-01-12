@@ -1,37 +1,48 @@
 ## [intersection](https://www.greatfrontend.com/interviews/study/lodash/questions/javascript/intersection)
 
 ```js
-// Old-fashioned solution
+// - Time: O(∑ |arrays[i]|)
+// - Space: O(∑ |arrays[i]|)
 function intersection(...arrays) {
-  if (!arrays.length) return [];
+  const k = arrays.length;
 
-  const set = new Set(arrays.at(0));
+  if (k === 0) return [];
+  if (k === 1) return [...new Set(arrays[0])]; // O(n)
 
-  for (let i = 1; i < arrays.length; i += 1) {
-    const array = arrays[i];
+  const head = arrays[0];
+  const sets = [];
 
-    set.forEach((value) => {
-      if (!array.includes(value)) {
-        set.delete(value);
+  // O(k - 1)
+  for (let i = 1; i < k; i += 1) {
+    const set = new Set(arrays[i]); // O((k - 1) * n)
+
+    if (set.size === 0) return []; // Short-circuit
+
+    sets.push(set); // O(1)
+  }
+
+  const result = [];
+  const seen = new Set();
+
+  for (const val of head) {
+    if (seen.has(val)) continue; // O(1)
+
+    let isCommon = true;
+
+    for (const set of sets) {
+      if (!set.has(val)) {
+        // O(1)
+        isCommon = false;
+        break;
       }
-    });
+    }
+
+    if (isCommon) {
+      result.push(val); // O(1)
+      seen.add(val); // O(1)
+    }
   }
 
-  return Array.from(set);
-}
-
-// Modern solution
-function intersection(...arrays) {
-  const firstSet = new Set(arrays.at(0));
-  const otherSets = arrays.slice(1).map((array) => new Set(array));
-
-  let intersections = firstSet;
-
-  for (const set of otherSets) {
-    intersections = intersections.intersection(set);
-    if (intersections.size === 0) return [];
-  }
-
-  return Array.from(intersections);
+  return result;
 }
 ```
