@@ -1,6 +1,8 @@
 ## [1974 Minimum Time to Type Word Using Special Typewriter](https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/description/)
 
 ```js
+// - Time: O(n)
+// - Space: O(1)
 function minTimeToType(word) {
   const ALPHABET_SIZE = 26;
   let current = 'a';
