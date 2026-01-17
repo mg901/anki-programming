@@ -10,15 +10,15 @@ function partitionLabels(s) {
   const n = s.length;
   const ALPHABET_SIZE = 26;
   const codeA = 'a'.codePointAt(0);
-  const lastIndexes = new Uint8Array(ALPHABET_SIZE);
+  const lastIndexes = new Array(ALPHABET_SIZE).fill(0);
 
   for (let i = 0; i < n; i += 1) {
     lastIndexes[s.codePointAt(i) - codeA] = i;
   }
 
-  const result = [];
   let size = 0;
   let end = 0;
+  const result = [];
 
   for (let i = 0; i < n; i += 1) {
     size += 1;
