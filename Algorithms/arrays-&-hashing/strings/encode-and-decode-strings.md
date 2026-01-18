@@ -1,6 +1,6 @@
 ## [Encode and Decode Strings](https://neetcode.io/problems/string-encode-and-decode)
 
-<!-- notecardId: 1765862620149 -->
+<!-- notecardId: 1768741537226 -->
 
 ```js
 // Explanation:

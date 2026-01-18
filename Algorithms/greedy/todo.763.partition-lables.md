@@ -2,31 +2,28 @@
 
 ```js
 // Explanation:
-// - Neetcode:
+// - Neetcode: https://youtu.be/B7m8UmZE-vw
 
 // - Time: O(n)
 // - Space: O(1)
 function partitionLabels(s) {
   const n = s.length;
-  const ALPHABET_SIZE = 26;
-  const codeA = 'a'.codePointAt(0);
-  const lastIndexes = new Array(ALPHABET_SIZE).fill(0);
-
-  for (let i = 0; i < n; i += 1) {
-    lastIndexes[s.codePointAt(i) - codeA] = i;
-  }
-
-  let size = 0;
-  let end = 0;
+  const lastIndexes = {};
   const result = [];
 
   for (let i = 0; i < n; i += 1) {
-    size += 1;
-    end = Math.max(end, lastIndexes[s.codePointAt(i) - codeA]);
+    lastIndexes[s[i]] = i;
+  }
+
+  let start = 0;
+  let end = 0;
+
+  for (let i = 0; i < n; i += 1) {
+    end = Math.max(end, lastIndexes[s[i]]);
 
     if (i === end) {
-      result.push(size);
-      size = 0;
+      result.push(end - start + 1);
+      start = i + 1;
     }
   }
 
