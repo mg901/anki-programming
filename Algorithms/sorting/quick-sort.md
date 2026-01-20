@@ -115,9 +115,9 @@ function swap(arr, i, j) {
 }
 ```
 
-## [Quick Sort 'Randomized Haore Partition'](https://bigfrontend.dev/problem/implement-Quick-Sort)
+## [Quick Sort 'Randomized Haore Partition'](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1767139185993 -->
+<!-- notecardId: 1768767413641 -->
 
 ```js
 // Explanation:
@@ -133,13 +133,19 @@ function swap(arr, i, j) {
 //    Average: O(log n)
 //    Worst: O(n)
 function quickSort(arr) {
+  const THRESHOLD = 12;
   const n = arr.length;
-  if (n < 2) return;
+  if (n < 2) return nums;
 
   const stack = [[0, n - 1]];
 
   while (stack.length) {
     let [left, right] = stack.pop();
+
+    if (right - left < THRESHOLD) {
+      insertionSort(nums, left, right);
+      continue;
+    }
 
     while (left < right) {
       // low <= boundary
@@ -153,8 +159,15 @@ function quickSort(arr) {
         stack.push([left, boundary]);
         left = boundary + 1;
       }
+
+      if (right - left < THRESHOLD) {
+        insertionSort(nums, left, right);
+        break;
+      }
     }
   }
+
+  return nums;
 }
 
 function randomizedPartition(arr, left, right) {
@@ -189,6 +202,20 @@ function hoarePartition(arr, left, right) {
     if (i >= j) return j;
 
     swap(arr, i, j);
+  }
+}
+
+function insertionSort(nums, left, right) {
+  for (let i = left + 1; i <= right; i += 1) {
+    const current = nums[i];
+    let j = i - 1;
+
+    while (j >= left && nums[j] > current) {
+      nums[j + 1] = nums[j];
+      j -= 1;
+    }
+
+    nums[j + 1] = current;
   }
 }
 
