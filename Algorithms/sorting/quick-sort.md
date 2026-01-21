@@ -115,9 +115,9 @@ function swap(arr, i, j) {
 }
 ```
 
-## [Quick Sort 'Randomized Haore Partition'](https://leetcode.com/problems/sort-an-array/description/)
+## [Quick Sort 'Randomized Hoare Partition'](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1768767413641 -->
+<!-- notecardId: 1769008183486 -->
 
 ```js
 // Explanation:
