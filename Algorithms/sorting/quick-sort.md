@@ -188,16 +188,16 @@ function randomInt(min, max) {
 // 2)
 // 3)
 function hoarePartition(arr, left, right) {
-  const boundary = arr[left];
+  const pivot = arr[left];
   let i = left - 1;
   let j = right + 1;
 
   while (true) {
     do i += 1;
-    while (arr[i] < boundary);
+    while (arr[i] < pivot);
 
     do j -= 1;
-    while (arr[j] > boundary);
+    while (arr[j] > pivot);
 
     if (i >= j) return j;
 
