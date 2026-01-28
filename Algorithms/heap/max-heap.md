@@ -1,12 +1,12 @@
 ## [Max Heap](https://www.greatfrontend.com/questions/algo/heap)
 
-<!-- notecardId: 1766683224218 -->
+<!-- notecardId: 1769533884296 -->
 
 ```js
 // Explanation:
 // - Abdul Bari: https://youtu.be/HqPJF2L5h9U
 
-export default class Heap {
+class Heap {
   #items;
 
   constructor(array = []) {
@@ -21,7 +21,7 @@ export default class Heap {
   // - Time: O(n)
   heapify(array) {
     this.#items = array;
-    const lastParentIdx = Math.floor(this.size / 2) - 1;
+    const lastParentIdx = (this.size >> 1) - 1;
 
     for (let i = lastParentIdx; i >= 0; i -= 1) {
       this.#heapifyDown(i);
@@ -32,8 +32,8 @@ export default class Heap {
   #heapifyDown(index) {
     while (true) {
       let largestIdx = index;
-      let leftChildIdx = 2 * index + 1;
-      let rightChildIdx = 2 * index + 2;
+      let leftChildIdx = (index << 1) + 1;
+      let rightChildIdx = (index << 1) + 2;
 
       if (
         leftChildIdx < this.size &&
@@ -67,7 +67,7 @@ export default class Heap {
     const items = this.#items;
 
     while (index > 0) {
-      const parentIdx = Math.floor((index - 1) / 2);
+      const parentIdx = (index - 1) >> 1;
 
       if (items[parentIdx] >= items[index]) break;
 
@@ -98,10 +98,7 @@ export default class Heap {
     if (i === j) return;
 
     const items = this.#items;
-    const temp = items[j];
-
-    items[j] = items[i];
-    items[i] = temp;
+    [items[i], items[j]] = [items[j], items[i]];
   }
 }
 ```

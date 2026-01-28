@@ -1,6 +1,6 @@
 ## [Radix Sort](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1765274356283 -->
+<!-- notecardId: 1769514092846 -->
 
 ```js
 // Explanation:
@@ -10,9 +10,12 @@
 // - Space: O(n + b)
 //   where:
 //    n - number of elements
-//    k - number of digits per number
+//    k - number of digits in the max number
 //    b - base (usually 10)
 function sortArray(nums) {
+  const n = nums.length;
+  if (n < 2) return nums;
+
   const pos = nums.filter((num) => num >= 0);
   const neg = nums.filter((num) => num < 0).map((num) => -num);
 
@@ -29,22 +32,28 @@ function radixSort(nums) {
   if (n < 2) return nums;
 
   let place = 1;
-  const max = Math.max(...nums);
+  const RADIX = 10;
+  let min = nums[0];
+  let max = nums[0];
+
+  for (const num of nums) {
+    min = Math.min(min, num);
+    max = Math.max(max, num);
+  }
+
+  if (min === max) return nums;
 
   while (Math.floor(max / place) > 0) {
     nums = countingSortForDigits(nums, place);
-    place *= 10;
+
+    place *= RADIX;
   }
 
   return nums;
 }
 
 function countingSortForDigits(nums, place) {
-  const n = nums.length;
-  if (n < 2) return nums;
-
   const RADIX = 10;
-  const sorted = new Array(n);
   const counter = new Array(RADIX).fill(0);
 
   for (const num of nums) {
@@ -56,11 +65,14 @@ function countingSortForDigits(nums, place) {
     counter[i] += counter[i - 1];
   }
 
+  const n = nums.length;
+  const sorted = new Array(n);
+
   for (let i = n - 1; i >= 0; i -= 1) {
     const num = nums[i];
     const digit = Math.floor(num / place) % RADIX;
-    const pos = (counter[digit] -= 1);
-    sorted[pos] = num;
+    counter[digit] -= 1;
+    sorted[counter[digit]] = num;
   }
 
   return sorted;
