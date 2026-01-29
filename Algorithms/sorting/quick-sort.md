@@ -66,7 +66,7 @@ function quickSort(arr) {
     while (left < right) {
       // low <= pivot - 1
       // pivot + 1 >= high
-      const pivot = randomizedPartition(arr, left, right);
+      const pivot = lomutoPartition(arr, left, right);
 
       if (pivot - left < right - pivot) {
         stack.push([pivot + 1, right]);
@@ -79,19 +79,9 @@ function quickSort(arr) {
   }
 }
 
-function randomizedPartition(arr, left, right) {
-  const randomIdx = randomInt(left, right);
-  swap(arr, right, randomIdx);
-
-  return lomutoPartition(arr, left, right);
-}
-
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 function lomutoPartition(arr, left, right) {
-  const pivot = arr[right];
+  const randomIdx = randomInt(left, right);
+  const pivot = arr[randomIdx];
   let wall = left;
 
   for (let i = left; i < right; i += 1) {
@@ -104,6 +94,10 @@ function lomutoPartition(arr, left, right) {
   swap(arr, right, wall);
 
   return wall;
+}
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function swap(arr, i, j) {
@@ -144,6 +138,7 @@ function quickSort(arr) {
 
     if (right - left < THRESHOLD) {
       insertionSort(nums, left, right);
+
       continue;
     }
 
@@ -162,6 +157,7 @@ function quickSort(arr) {
 
       if (right - left < THRESHOLD) {
         insertionSort(nums, left, right);
+
         break;
       }
     }
@@ -208,6 +204,8 @@ function hoarePartition(arr, left, right) {
 function insertionSort(nums, left, right) {
   for (let i = left + 1; i <= right; i += 1) {
     const current = nums[i];
+    if (nums[i - 1] <= current) continue;
+
     let j = i - 1;
 
     while (j >= left && nums[j] > current) {

@@ -54,9 +54,9 @@ function merge(a, b) {
 }
 ```
 
-## [Merge Sort 'in-place'](https://bigfrontend.dev/problem/implement-Merge-Sort)
+## [Merge Sort 'in-place'](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1764467458974 -->
+<!-- notecardId: 1769691872192 -->
 
 ```js
 // Explanation:
@@ -66,35 +66,69 @@ function merge(a, b) {
 
 // - Time: O(n log(n))
 // - Space: O(n)
-function mergeSort(arr) {
-  const n = arr.length;
-  if (n < 2) return;
+function sortArray(nums) {
+  const n = nums.length;
+  if (n < 2) return nums;
 
-  sort(arr, new Array(n));
+  sort(nums, new Array(n));
+
+  return nums;
 }
 
-function sort(arr, temp, left = 0, right = arr.length - 1) {
+function sort(nums, temp, left = 0, right = nums.length - 1) {
   if (left >= right) return;
+
+  const THRESHOLD = 12;
+
+  if (right - left < THRESHOLD) {
+    insertionSort(nums, left, right);
+
+    return;
+  }
 
   const mid = left + ((right - left) >> 1);
 
-  sort(arr, temp, left, mid);
-  sort(arr, temp, mid + 1, right);
+  sort(nums, temp, left, mid);
+  sort(nums, temp, mid + 1, right);
 
-  merge(arr, temp, left, mid, right);
+  if (nums[mid] <= nums[mid + 1]) return;
+
+  merge(nums, temp, left, mid, right);
 }
 
-function merge(arr, temp, left, mid, right) {
+function insertionSort(nums, left, right) {
+  for (let i = left + 1; i <= right; i += 1) {
+    const current = nums[i];
+    if (nums[i - 1] <= current) continue;
+
+    let j = i - 1;
+
+    while (j >= left && nums[j] > current) {
+      nums[j + 1] = nums[j];
+      j -= 1;
+    }
+
+    nums[j + 1] = current;
+  }
+
+  return nums;
+}
+
+function merge(nums, temp, left, mid, right) {
+  for (let i = left; i <= right; i += 1) {
+    temp[i] = nums[i];
+  }
+
   let i = left;
   let j = mid + 1;
   let k = left;
 
   while (i <= mid && j <= right) {
-    if (arr[i] <= arr[j]) {
-      temp[k] = arr[i];
+    if (temp[i] < temp[j]) {
+      nums[k] = temp[i];
       i += 1;
     } else {
-      temp[k] = arr[j];
+      nums[k] = temp[j];
       j += 1;
     }
 
@@ -102,26 +136,22 @@ function merge(arr, temp, left, mid, right) {
   }
 
   while (i <= mid) {
-    temp[k] = arr[i];
+    nums[k] = temp[i];
     i += 1;
     k += 1;
   }
 
   while (j <= right) {
-    temp[k] = arr[j];
+    nums[k] = temp[j];
     j += 1;
     k += 1;
-  }
-
-  for (let l = left; l <= right; l += 1) {
-    arr[l] = temp[l];
   }
 }
 ```
 
-## [Merge Sort 'bottom-up'](https://bigfrontend.dev/problem/implement-Merge-Sort)
+## [Merge Sort 'bottom-up'](https://leetcode.com/problems/sort-an-array/description/)
 
-<!-- notecardId: 1765537945158 -->
+<!-- notecardId: 1769691872195 -->
 
 ```js
 // Explanation:
@@ -132,9 +162,9 @@ function merge(arr, temp, left, mid, right) {
 
 // - Time: O(n log(n))
 // - Space: O(n)
-function mergeSort(arr) {
-  const n = arr.length;
-  if (n < 2) return;
+function sortArray(nums) {
+  const n = nums.length;
+  if (n < 2) return nums;
 
   const temp = new Array(n);
 
@@ -145,24 +175,30 @@ function mergeSort(arr) {
       const mid = Math.min(left + step - 1, n - 1);
       const right = Math.min(left + step * 2 - 1, n - 1);
 
-      merge(arr, temp, left, mid, right);
+      merge(nums, temp, left, mid, right);
 
       left = right + 1;
     }
   }
+
+  return nums;
 }
 
-function merge(arr, temp, left, mid, right) {
+function merge(nums, temp, left, mid, right) {
+  for (let i = left; i <= right; i += 1) {
+    temp[i] = nums[i];
+  }
+
   let i = left;
   let j = mid + 1;
   let k = left;
 
   while (i <= mid && j <= right) {
-    if (arr[i] <= arr[j]) {
-      temp[k] = arr[i];
+    if (temp[i] <= temp[j]) {
+      nums[k] = temp[i];
       i += 1;
     } else {
-      temp[k] = arr[j];
+      nums[k] = temp[j];
       j += 1;
     }
 
@@ -170,19 +206,15 @@ function merge(arr, temp, left, mid, right) {
   }
 
   while (i <= mid) {
-    temp[k] = arr[i];
+    nums[k] = temp[i];
     i += 1;
     k += 1;
   }
 
   while (j <= right) {
-    temp[k] = arr[j];
+    nums[k] = temp[j];
     j += 1;
     k += 1;
-  }
-
-  for (let l = left; l <= right; l += 1) {
-    arr[l] = temp[l];
   }
 }
 ```

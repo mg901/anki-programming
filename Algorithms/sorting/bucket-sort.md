@@ -42,10 +42,11 @@ function bucketSort(nums) {
 
 function insertionSort(nums) {
   const n = nums.length;
-  if (n < 2) return nums;
 
   for (let i = 1; i < n; i += 1) {
     const current = nums[i];
+    if (nums[i - 1] <= current) continue;
+
     let j = i - 1;
 
     while (j >= 0 && nums[j] > current) {

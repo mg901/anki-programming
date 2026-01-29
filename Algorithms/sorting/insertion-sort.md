@@ -15,10 +15,11 @@
 // - Space: O(1)
 function insertionSort(arr) {
   const n = arr.length;
-  if (n < 2) return;
 
   for (let i = 1; i < n; i += 1) {
     const current = arr[i];
+    if (arr[i - 1] <= current) continue;
+
     let j = i - 1;
 
     while (j >= 0 && arr[j] > current) {
