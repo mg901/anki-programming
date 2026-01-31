@@ -44,7 +44,7 @@ function radixSort(nums) {
   if (min === max) return nums;
 
   while (Math.floor(max / place) > 0) {
-    nums = countingSortForDigits(nums, place);
+    nums = countingSortByDigits(nums, place);
 
     place *= RADIX;
   }
@@ -52,7 +52,7 @@ function radixSort(nums) {
   return nums;
 }
 
-function countingSortForDigits(nums, place) {
+function countingSortByDigits(nums, place) {
   const RADIX = 10;
   const counter = new Array(RADIX).fill(0);
 
@@ -71,8 +71,8 @@ function countingSortForDigits(nums, place) {
   for (let i = n - 1; i >= 0; i -= 1) {
     const num = nums[i];
     const digit = Math.floor(num / place) % RADIX;
-    counter[digit] -= 1;
-    sorted[counter[digit]] = num;
+    const pos = (counter[digit] -= 1);
+    sorted[pos] = num;
   }
 
   return sorted;

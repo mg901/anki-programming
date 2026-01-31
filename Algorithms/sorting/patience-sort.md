@@ -37,9 +37,9 @@ function buildPiles(nums) {
 
     while (left < right) {
       const mid = left + ((right - left) >> 1);
-      const top = piles[mid].at(-1);
+      const last = piles[mid].at(-1);
 
-      if (num <= top) {
+      if (num <= last) {
         right = mid;
       } else {
         left = mid + 1;
@@ -62,11 +62,11 @@ function mergePiles(piles) {
     });
   }
 
-  const merged = [];
+  const result = [];
 
   while (!minHeap.isEmpty()) {
     const smallest = minHeap.pop();
-    merged.push(smallest.val);
+    result.push(smallest.val);
 
     if (smallest.pile.length) {
       smallest.val = smallest.pile.pop();
@@ -74,6 +74,6 @@ function mergePiles(piles) {
     }
   }
 
-  return merged;
+  return result;
 }
 ```
