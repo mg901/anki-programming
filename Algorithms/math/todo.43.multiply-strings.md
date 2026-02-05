@@ -7,13 +7,13 @@
 // - Time: O(m * n)
 // - Space: O(m + n)
 function multiply(num1, num2) {
-  if (num1 === '0' || num2 === '0') return '0';
+  if (num1 === "0" || num2 === "0") return "0";
 
   const n = num1.length;
   const m = num2.length;
   const RADIX = 10;
-  const codeZero = '0'.codePointAt(0);
-  const product = new Uint32Array(n + m);
+  const codeZero = "0".codePointAt(0);
+  const product = new Array(n + m).fill(0);
 
   for (let i = n - 1; i >= 0; i -= 1) {
     for (let j = m - 1; j >= 0; j -= 1) {
@@ -31,6 +31,6 @@ function multiply(num1, num2) {
     start += 1;
   }
 
-  return product.slice(start).join('');
+  return product.slice(start).join("");
 }
 ```
